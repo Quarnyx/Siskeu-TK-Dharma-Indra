@@ -8,9 +8,6 @@ switch ($_GET['page'] ?? '') {
     case 'pengguna':
         include 'pages/pengguna/index.php';
         break;
-    case 'pemasok':
-        include 'pages/pemasok/index.php';
-        break;
     case 'akun':
         include 'pages/akun/index.php';
         break;
@@ -29,7 +26,6 @@ switch ($_GET['page'] ?? '') {
     case 'arus-kas':
         include 'pages/arus-kas/index.php';
         break;
-
     default:
         include 'pages-404.php';
         break;

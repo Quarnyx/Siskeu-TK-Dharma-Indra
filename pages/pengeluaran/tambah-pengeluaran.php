@@ -56,21 +56,7 @@
 
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <label for="" class="form-label">Pemasok</label>
-                <select name="id_pemasok" class="form-select">
-                    <?php
-                    require_once '../../config.php';
-                    $sql = "SELECT * FROM pemasok";
-                    $result = $conn->query($sql);
-                    while ($row = $result->fetch_assoc()) {
-                        ?>
-                        <option value="<?= $row['id_pemasok'] ?>"><?= $row['nama'] ?></option>
-                        <?php
-                    }
-                    ?>
-                </select>
-            </div>
+
             <div class="col-md-6">
                 <label for="" class="form-label">Tanggal Transaksi</label>
                 <input type="date" class="form-control" name="tanggal_transaksi" id="tanggal_transaksi" placeholder="">

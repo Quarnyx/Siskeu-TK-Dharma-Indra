@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="d-flex flex-column h-100">
                             <div class="mb-4 mb-md-5 text-center">
                                 <a href="index.php" class="d-block auth-logo">
-                                    <img src="assets/images/logo.png" alt="" height="28"> <span class="logo-txt">TK
+                                    <img src="assets/images/logo.png" alt="" height="70"> <span class="logo-txt"><br>TK
                                         Dharma Indah</span>
                                 </a>
                             </div>

@@ -10,7 +10,7 @@
             $data = mysqli_fetch_array($query);
             $max = $data['kode_pemasukan'] ? substr($data['kode_pemasukan'], 3, 3) : "000";
             $no = $max + 1;
-            $char = "PM-";
+            $char = "PJ-";
             $kode = $char . sprintf("%03s", $no);
             ?>
             <div class="col-md-6">
@@ -57,21 +57,6 @@
 
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <label for="" class="form-label">Pemasok</label>
-                <select name="id_pemasok" class="form-select">
-                    <?php
-                    require_once '../../config.php';
-                    $sql = "SELECT * FROM pemasok";
-                    $result = $conn->query($sql);
-                    while ($row = $result->fetch_assoc()) {
-                        ?>
-                        <option value="<?= $row['id_pemasok'] ?>"><?= $row['nama'] ?></option>
-                        <?php
-                    }
-                    ?>
-                </select>
-            </div>
             <div class="col-md-6">
                 <label for="" class="form-label">Tanggal Transaksi</label>
                 <input type="date" class="form-control" name="tanggal_transaksi" id="tanggal_transaksi" placeholder="">

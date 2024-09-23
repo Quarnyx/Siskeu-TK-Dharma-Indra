@@ -106,50 +106,6 @@ switch ($_GET['aksi'] ?? '') {
             http_response_code(400);
         }
         break;
-    case 'tambah-pemasok':
-        $nama = $_POST['nama'];
-        $kontak = $_POST['kontak'];
-        $keterangan = $_POST['keterangan'];
-        $sql = "INSERT INTO pemasok (nama, kontak, keterangan) VALUES ('$nama', '$kontak', '$keterangan')";
-        $result = $conn->query($sql);
-        if ($result) {
-            echo 'ok';
-            http_response_code(200);
-        } else {
-            echo 'error';
-            echo $conn->error;
-            http_response_code(400);
-        }
-        break;
-    case 'hapus-pemasok':
-        $id = $_POST['id'];
-        $sql = "DELETE FROM pemasok WHERE id_pemasok = '$id'";
-        $result = $conn->query($sql);
-        if ($result) {
-            echo 'ok';
-            http_response_code(200);
-        } else {
-            echo 'error';
-            echo $conn->error;
-            http_response_code(400);
-        }
-        break;
-    case 'edit-pemasok':
-        $id = $_POST['id'];
-        $nama = $_POST['nama'];
-        $kontak = $_POST['kontak'];
-        $keterangan = $_POST['keterangan'];
-        $sql = "UPDATE pemasok SET nama = '$nama', kontak = '$kontak', keterangan = '$keterangan' WHERE id_pemasok = '$id'";
-        $result = $conn->query($sql);
-        if ($result) {
-            echo 'ok';
-            http_response_code(200);
-        } else {
-            echo 'error';
-            echo $conn->error;
-            http_response_code(400);
-        }
-        break;
     case 'tambah-akun':
         $nama_akun = $_POST['nama_akun'];
         $jenis_akun = $_POST['jenis_akun'];
@@ -195,7 +151,6 @@ switch ($_GET['aksi'] ?? '') {
         }
         break;
     case 'tambah-pemasukan':
-        $id_pemasok = $_POST['id_pemasok'];
         $total = $_POST['total'];
         $keterangan = $_POST['keterangan'];
         $tanggal_transaksi = $_POST['tanggal_transaksi'];
@@ -204,8 +159,8 @@ switch ($_GET['aksi'] ?? '') {
         $kode_pemasukan = $_POST['kode_pemasukan'];
         $id_pengguna = $_POST['id_pengguna'];
 
-        $sql = "INSERT INTO pemasukan (id_pemasok, total, keterangan, tanggal_transaksi, id_akun, kode_pemasukan, id_pengguna) 
-            VALUES ('$id_pemasok', '$total', '$keterangan', '$tanggal_transaksi', '$id_akun_debit', '$kode_pemasukan', '$id_pengguna')";
+        $sql = "INSERT INTO pemasukan (total, keterangan, tanggal_transaksi, id_akun, kode_pemasukan, id_pengguna) 
+            VALUES ('$total', '$keterangan', '$tanggal_transaksi', '$id_akun_debit', '$kode_pemasukan', '$id_pengguna')";
         $result = $conn->query($sql);
         if ($result) {
             echo 'ok';
@@ -235,7 +190,6 @@ switch ($_GET['aksi'] ?? '') {
     case 'edit-pemasukan':
         $id = $_POST['id'];
         $total = $_POST['total'];
-        $id_pemasok = $_POST['id_pemasok'];
         $total = $_POST['total'];
         $keterangan = $_POST['keterangan'];
         $tanggal_transaksi = $_POST['tanggal_transaksi'];
@@ -244,7 +198,7 @@ switch ($_GET['aksi'] ?? '') {
         $kode_pemasukan = $_POST['kode_pemasukan'];
         $id_pengguna = $_POST['id_pengguna'];
 
-        $sql = "UPDATE pemasukan SET id_pemasok = '$id_pemasok', total = '$total', keterangan = '$keterangan', tanggal_transaksi = '$tanggal_transaksi', id_akun = '$id_akun_debit', kode_pemasukan = '$kode_pemasukan', id_pengguna = '$id_pengguna' WHERE id_pemasukan = '$id'";
+        $sql = "UPDATE pemasukan SET total = '$total', keterangan = '$keterangan', tanggal_transaksi = '$tanggal_transaksi', id_akun = '$id_akun_debit', kode_pemasukan = '$kode_pemasukan', id_pengguna = '$id_pengguna' WHERE id_pemasukan = '$id'";
         $result = $conn->query($sql);
         if ($result) {
             echo 'ok';
@@ -257,7 +211,6 @@ switch ($_GET['aksi'] ?? '') {
         editTransaksi($conn, $id_akun_debit, $id_akun_kredit, $total, $keterangan, $kode_pemasukan, $tanggal_transaksi);
         break;
     case 'tambah-pengeluaran':
-        $id_pemasok = $_POST['id_pemasok'];
         $total = $_POST['total'];
         $keterangan = $_POST['keterangan'];
         $tanggal_transaksi = $_POST['tanggal_transaksi'];
@@ -266,8 +219,8 @@ switch ($_GET['aksi'] ?? '') {
         $kode_pengeluaran = $_POST['kode_pengeluaran'];
         $id_pengguna = $_POST['id_pengguna'];
 
-        $sql = "INSERT INTO pengeluaran (id_pemasok, total, keterangan, tanggal_transaksi, id_akun, kode_pengeluaran, id_pengguna) 
-            VALUES ('$id_pemasok', '$total', '$keterangan', '$tanggal_transaksi', '$id_akun_kredit', '$kode_pengeluaran', '$id_pengguna')";
+        $sql = "INSERT INTO pengeluaran (total, keterangan, tanggal_transaksi, id_akun, kode_pengeluaran, id_pengguna) 
+            VALUES ('$total', '$keterangan', '$tanggal_transaksi', '$id_akun_kredit', '$kode_pengeluaran', '$id_pengguna')";
         $result = $conn->query($sql);
         if ($result) {
             echo 'ok';
@@ -297,7 +250,6 @@ switch ($_GET['aksi'] ?? '') {
     case 'edit-pengeluaran':
         $id = $_POST['id'];
         $total = $_POST['total'];
-        $id_pemasok = $_POST['id_pemasok'];
         $total = $_POST['total'];
         $keterangan = $_POST['keterangan'];
         $tanggal_transaksi = $_POST['tanggal_transaksi'];
@@ -306,7 +258,7 @@ switch ($_GET['aksi'] ?? '') {
         $kode_pengeluaran = $_POST['kode_pengeluaran'];
         $id_pengguna = $_POST['id_pengguna'];
 
-        $sql = "UPDATE pengeluaran SET id_pemasok = '$id_pemasok', total = '$total', keterangan = '$keterangan', tanggal_transaksi = '$tanggal_transaksi', id_akun = '$id_akun_kredit', kode_pengeluaran = '$kode_pengeluaran', id_pengguna = '$id_pengguna' WHERE id_pengeluaran = '$id'";
+        $sql = "UPDATE pengeluaran SET total = '$total', keterangan = '$keterangan', tanggal_transaksi = '$tanggal_transaksi', id_akun = '$id_akun_kredit', kode_pengeluaran = '$kode_pengeluaran', id_pengguna = '$id_pengguna' WHERE id_pengeluaran = '$id'";
         $result = $conn->query($sql);
         if ($result) {
             echo 'ok';

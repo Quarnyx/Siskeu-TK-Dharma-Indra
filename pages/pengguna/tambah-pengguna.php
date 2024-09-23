@@ -2,7 +2,7 @@
     <div class="d-grid gap-3">
         <div class="row">
             <div class="col-md-6">
-                <label for="nama" class="form-label">Name</label>
+                <label for="nama" class="form-label">Nama</label>
                 <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama">
             </div>
             <div class="col-md-6">

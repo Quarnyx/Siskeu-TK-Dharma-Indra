@@ -10,7 +10,7 @@ if ($result->num_rows > 0) {
     <input type="hidden" name="id" value="<?= $row['id_akun'] ?>">
     <div class="d-grid gap-3">
         <div>
-            <label for="nama" class="form-label">Name Akun</label>
+            <label for="nama" class="form-label">Nama Akun Baru</label>
             <input type="text" class="form-control" name="nama_akun" id="nama" placeholder=""
                 value="<?= $row['nama_akun'] ?>">
         </div>

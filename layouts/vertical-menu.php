@@ -117,13 +117,6 @@
                                         </a>
                                     </li>
                                 <?php } ?>
-
-                                <li>
-                                    <a href="?page=pemasok">
-                                        <span data-key="t-chat">Pemasok</span>
-                                    </a>
-                                </li>
-
                             </ul>
                         </li>
                     <?php }

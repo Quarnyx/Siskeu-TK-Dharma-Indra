@@ -33,7 +33,7 @@
                             <h4 class="mb-3 text-success">
                                 <?php
                                 require_once 'config.php';
-                                $sql = "SELECT SUM(debit - kredit) AS total_kas FROM jurnal WHERE jenis_akun = 'Aktiva Lancar'";
+                                $sql = "SELECT SUM(debit - kredit) AS total_kas FROM jurnal WHERE jenis_akun = 'Aktiva Lancar' AND MONTH(tanggal_transaksi) = MONTH(CURDATE())";
                                 $result = $conn->query($sql);
                                 $row = $result->fetch_assoc();
                                 $total_kas = $row['total_kas'];
@@ -60,7 +60,7 @@
                             <h4 class="mb-3 text-info">
                                 <?php
                                 require_once 'config.php';
-                                $sql = "SELECT SUM(total) AS total FROM pemasukan";
+                                $sql = "SELECT SUM(total) AS total FROM pemasukan WHERE MONTH(tanggal_transaksi) = MONTH(CURDATE())";
                                 $result = $conn->query($sql);
                                 $row = $result->fetch_assoc();
                                 $total_kas = $row['total'];
@@ -88,7 +88,7 @@
                             <h4 class="mb-3 text-danger">
                                 <?php
                                 require_once 'config.php';
-                                $sql = "SELECT SUM(total) AS total FROM pengeluaran";
+                                $sql = "SELECT SUM(total) AS total FROM pengeluaran WHERE MONTH(tanggal_transaksi) = MONTH(CURDATE())";
                                 $result = $conn->query($sql);
                                 $row = $result->fetch_assoc();
                                 $total_kas = $row['total'];

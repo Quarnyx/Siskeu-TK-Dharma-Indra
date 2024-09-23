@@ -4,7 +4,6 @@
             <th>#</th>
             <th>Kode</th>
             <th>Keterangan</th>
-            <th>Pemasuk</th>
             <th>Tanggal</th>
             <th>Total</th>
             <th>Aksi</th>
@@ -14,15 +13,7 @@
         <?php
         require_once '../../config.php';
         $no = 1;
-        $sql = "SELECT
-	pengeluaran.*, 
-	pemasok.nama
-FROM
-	pengeluaran
-	INNER JOIN
-	pemasok
-	ON 
-		pengeluaran.id_pemasok = pemasok.id_pemasok";
+        $sql = "SELECT * FROM pengeluaran";
         $result = $conn->query($sql);
         while ($row = $result->fetch_assoc()) {
             ?>
@@ -30,7 +21,6 @@ FROM
                 <td><?= $no++ ?></td>
                 <td><?= $row['kode_pengeluaran'] ?></td>
                 <td><?= $row['keterangan'] ?></td>
-                <td><?= $row['nama'] ?></td>
                 <td><?= $row['tanggal_transaksi'] ?></td>
                 <td><?= "Rp. " . number_format($row['total'], 0, ',', '.') ?></td>
                 <td>
@@ -76,10 +66,10 @@ FROM
                         if (data == "ok") {
                             loadTable();
                             $('.modal').modal('hide');
-                            alertify.success('Pengguna Berhasil Dihapus');
+                            alertify.success('Pengeluaran Berhasil Dihapus');
 
                         } else {
-                            alertify.error('Pengguna Gagal Dihapus');
+                            alertify.error('Pengeluaran Gagal Dihapus');
 
                         }
                     },

@@ -23,13 +23,13 @@
             <!-- card -->
             <div class="card border border-success card-h-100">
                 <div class="card-header bg-transparent border-success">
-                    <h5 class="my-0 text-success">Total Kas</h5>
+                    <h5 class="my-0 text-success">Saldo Kas</h5>
                 </div>
                 <!-- card body -->
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-12">
-                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Seluruh Kas</span>
+                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Saldo Kas</span>
                             <h4 class="mb-3 text-success">
                                 <?php
                                 require_once 'config.php';
@@ -56,7 +56,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-12">
-                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Seluruh Pendapatan</span>
+                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Pendapatan Bulan Ini</span>
                             <h4 class="mb-3 text-info">
                                 <?php
                                 require_once 'config.php';
@@ -84,7 +84,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-12">
-                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Seluruh Pengeluaran</span>
+                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Pengeluaran Bulan Ini</span>
                             <h4 class="mb-3 text-danger">
                                 <?php
                                 require_once 'config.php';
@@ -133,6 +133,70 @@
 
 
     </div><!-- end row-->
+    <div class="row">
+        <div class="col-xl-3 col-md-6">
+            <!-- card -->
+            <div class="card border border-info card-h-100">
+                <div class="card-header bg-transparent border-info">
+                    <h5 class="my-0 text-info">Total Penerimaan</h5>
+                </div>
+                <!-- card body -->
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Penerimaan Hari Ini</span>
+                            <h4 class="mb-3 text-info">
+                                <?php
+                                require_once 'config.php';
+                                $sql = "SELECT SUM(total) AS total FROM pemasukan WHERE tanggal_transaksi = CURDATE()";
+                                $result = $conn->query($sql);
+                                $row = $result->fetch_assoc();
+                                $total_kas = $row['total'];
+
+                                if ($total_kas == null) {
+                                    $total_kas = 0;
+                                }
+
+                                ?>
+                                Rp<span class=""><?php echo number_format($total_kas, 2, ',', '.'); ?></span>
+                            </h4>
+                        </div>
+                    </div>
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+
+        <div class="col-xl-3 col-md-6">
+            <!-- card -->
+            <div class="card border border-danger card-h-100">
+                <div class="card-header bg-transparent border-danger">
+                    <h5 class="my-0 text-danger">Total Pengeluaran</h5>
+                </div>
+                <!-- card body -->
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Pengeluaran Hari Ini</span>
+                            <h4 class="mb-3 text-danger">
+                                <?php
+                                require_once 'config.php';
+                                $sql = "SELECT SUM(total) AS total FROM pengeluaran WHERE tanggal_transaksi = CURDATE()";
+                                $result = $conn->query($sql);
+                                $row = $result->fetch_assoc();
+                                $total_kas = $row['total'];
+                                if ($total_kas == null) {
+                                    $total_kas = 0;
+                                }
+
+                                ?>
+                                Rp<span class=""><?php echo number_format($total_kas, 2, ',', '.'); ?></span>
+                            </h4>
+                        </div>
+                    </div>
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+    </div>
     <div class="row">
         <div class="col-xl-12">
             <!-- card -->

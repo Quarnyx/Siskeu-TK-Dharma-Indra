@@ -2,10 +2,9 @@
     <thead>
         <tr>
             <th>#</th>
-            <th>Kode Akun</th>
-            <th>Nama Akun</th>
-            <th>Jenis Akun</th>
-            <th>Wajib</th>
+            <th>Nama</th>
+            <th>Alamat</th>
+            <th>No Telepon</th>
             <th>Aksi</th>
         </tr>
     </thead>
@@ -13,27 +12,21 @@
         <?php
         require_once '../../config.php';
         $no = 1;
-        $sql = "SELECT * FROM akun ORDER BY kode_akun ASC";
+        $sql = "SELECT * FROM guru";
         $result = $conn->query($sql);
         while ($row = $result->fetch_assoc()) {
             ?>
             <tr>
                 <td><?= $no++ ?></td>
-                <td><?= $row['kode_akun'] ?></td>
-                <td><?= $row['nama_akun'] ?></td>
-                <td><?= $row['jenis_akun'] ?></td>
-                <td><?= $row['wajib'] == 1 ? "Ya" : "Tidak" ?></td>
+                <td><?= $row['nama_guru'] ?></td>
+                <td><?= $row['alamat'] ?></td>
+                <td><?= $row['no_telp'] ?></td>
                 <td>
-                    <?php
-                    if ($row['wajib'] != 1) { {
-                        }
-                        ?>
-                        <button id="delete" data-nama="<?= $row['nama_akun'] ?>" data-id="<?= $row['id_akun'] ?>"
-                            class="btn btn-danger btn-sm">Hapus</button>
-                    <?php } ?>
-
-                    <button id="edit" data-nama="<?= $row['nama_akun'] ?>" data-id="<?= $row['id_akun'] ?>"
+                    <button id="edit" data-nama="<?= $row['nama_guru'] ?>" data-id="<?= $row['id_guru'] ?>"
                         class="btn btn-primary btn-sm">Edit</button>
+                    <button id="delete" data-nama="<?= $row['nama_guru'] ?>" data-id="<?= $row['id_guru'] ?>"
+                        class="btn btn-danger btn-sm">Hapus</button>
+
                 </td>
             </tr>
             <?php
@@ -50,7 +43,7 @@
             const nama = $(this).data('nama');
             $.ajax({
                 type: 'POST',
-                url: 'pages/akun/edit-akun.php',
+                url: 'pages/guru/edit-guru.php',
                 data: 'id=' + id + '&nama=' + nama,
                 success: function (data) {
                     $('.modal').modal('show');
@@ -59,22 +52,23 @@
                 }
             })
         });
+
         $('#table-data').on('click', '#delete', function () {
             const id = $(this).data('id');
             const nama = $(this).data('nama');
             alertify.confirm('Hapus', 'Apakah anda yakin ingin menghapus data ' + nama + '?', function () {
                 $.ajax({
                     type: 'POST',
-                    url: 'proses.php?aksi=hapus-akun',
+                    url: 'proses.php?aksi=hapus-guru',
                     data: 'id=' + id,
                     success: function (data) {
                         if (data == "ok") {
                             loadTable();
                             $('.modal').modal('hide');
-                            alertify.success('Akun Berhasil Dihapus');
+                            alertify.success('Guru Berhasil Dihapus');
 
                         } else {
-                            alertify.error('Akun Gagal Dihapus');
+                            alertify.error('Guru Gagal Dihapus');
 
                         }
                     },

@@ -1,6 +1,8 @@
 <form id="tambah-pengeluaran" enctype="multipart/form-data">
     <input type="hidden" name="id_pengguna" value="<?php session_start();
     echo $_SESSION['id_pengguna']; ?>">
+    <input type="hidden" name="kode_pengguna" value="<?php
+    echo $_SESSION['kode_pengguna']; ?>"></div>
     <div class="d-grid gap-3">
         <div class="row">
             <?php
@@ -60,6 +62,33 @@
             <div class="col-md-6">
                 <label for="" class="form-label">Tanggal Transaksi</label>
                 <input type="date" class="form-control" name="tanggal_transaksi" id="tanggal_transaksi" placeholder="">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="nota" class="form-label">Nota</label>
+                <div class="form-group mb-0">
+                    <p>*Format file yang di izinkan hanya PDF dan JPG/JPEG</p>
+                    <input type="file" class="form-control" name="nota">
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="guru_penerima" class="form-label">Guru Penerima</label>
+                <select name="guru_penerima" class="form-select">
+                    <option value="-">Pilih Guru</option>
+                    <?php
+                    require_once '../../config.php';
+                    $sql = "SELECT * FROM guru";
+                    $result = $conn->query($sql);
+                    while ($row = $result->fetch_assoc()) {
+                        ?>
+                        <option value="<?= $row['nama_guru'] ?>"><?= $row['nama_guru'] ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
             </div>
 
         </div>

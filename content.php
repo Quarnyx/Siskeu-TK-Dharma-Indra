@@ -26,6 +26,9 @@ switch ($_GET['page'] ?? '') {
     case 'arus-kas':
         include 'pages/arus-kas/index.php';
         break;
+    case 'guru':
+        include 'pages/guru/index.php';
+        break;
     default:
         include 'pages-404.php';
         break;

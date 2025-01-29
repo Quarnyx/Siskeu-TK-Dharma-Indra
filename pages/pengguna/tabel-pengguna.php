@@ -2,6 +2,7 @@
     <thead>
         <tr>
             <th>#</th>
+            <th>Kode Pengguna</th>
             <th>Nama</th>
             <th>Username</th>
             <th>Level</th>
@@ -18,14 +19,17 @@
             ?>
             <tr>
                 <td><?= $no++ ?></td>
+                <td><?= $row['kode_pengguna'] ?></td>
                 <td><?= $row['nama'] ?></td>
                 <td><?= $row['username'] ?></td>
                 <td><?= $row['level'] ?></td>
                 <td>
                     <button id="edit" data-nama="<?= $row['nama'] ?>" data-id="<?= $row['id_pengguna'] ?>"
                         class="btn btn-primary btn-sm">Edit</button>
-                    <button id="delete" data-nama="<?= $row['nama'] ?>" data-id="<?= $row['id_pengguna'] ?>"
-                        class="btn btn-danger btn-sm">Hapus</button>
+                    <?php if ($_SESSION['level'] = !"Kepala Sekolah") { ?>
+                        <button id="delete" data-nama="<?= $row['nama'] ?>" data-id="<?= $row['id_pengguna'] ?>"
+                            class="btn btn-danger btn-sm">Hapus</button>
+                    <?php } ?>
                     <button id="ganti-password" data-nama="<?= $row['nama']; ?>" data-id="<?= $row['id_pengguna'] ?>"
                         class="btn btn-default btn-sm">Ganti
                         Password</button>

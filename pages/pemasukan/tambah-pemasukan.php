@@ -1,6 +1,8 @@
 <form id="tambah-pemasukan" enctype="multipart/form-data">
     <input type="hidden" name="id_pengguna" value="<?php session_start();
     echo $_SESSION['id_pengguna']; ?>">
+    <input type="hidden" name="kode_pengguna" value="<?php
+    echo $_SESSION['kode_pengguna']; ?>">
     <div class="d-grid gap-3">
         <div class="row">
             <?php

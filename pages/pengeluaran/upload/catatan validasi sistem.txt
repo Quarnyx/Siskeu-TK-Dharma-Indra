@@ -1,0 +1,14 @@
+1. pengguna admin diganti jadi kepala sekolah, button hapus dihilangkan, pada menu edit level dihapus.
+2. kepala sekolah jadi admin
+3. untuk pengguna akun yang melakukan transaksi otomatis terekam di tabel user -> point ke 8
+4. pada master pengguna ditambah kode user
+5. master data : 
+   - data guru : tabel : No./Nama/Jabatan/Alamat/No.Telp
+   - data siswa : 
+	- Kelas A,B,C ; - IDENTITAS ; tabel: No./NISN/Nama/Alamat/Tahun masuk/ Nama ortu/no. telp
+			- CEK PEMBAYARAN : pilihan bulan dan tahun ; tabel : no./NISN/Nama/spp bulan 1,2,3,4,dst/pembangunan/seragam/extrakurikuler/dll
+6. pada master keuangan untuk kode paten (1) itu dimunculkan/dibuatkan kolom input
+7. pada transaksi pemasukan ditambah pilihan siswa yang sudah diiputkan di master data siswa
+8. transaksi pemasukan dan pengeluaran ditambahkan tabel kode user yang melakukan transaksi
+9. pada transaksi pengeluaran ditambahkan pilihan guru Ketika tujuan akun biaya transport guru
+10. pada transaksi pengeluaran ditambahkan foto kwintansi 

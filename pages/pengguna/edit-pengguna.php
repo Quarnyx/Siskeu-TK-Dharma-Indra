@@ -19,47 +19,34 @@ if ($result->num_rows > 0) {
             <input type="text" class="form-control " name="username" id="username" placeholder="Username"
                 value="<?= $row['username'] ?>">
         </div>
-        <div>
-            <label for="level" class="form-label">Level</label>
-            <select class="form-select" name="level" id="level">
-                <option value="Admin" <?php if ($row['level'] == 'Admin')
-                    echo 'selected' ?>>Admin</option>
-                    <option value="Kepala Sekolah" <?php if ($row['level'] == 'Kepala Sekolah')
-                    echo 'selected' ?>>Kepala
-                        Sekolah</option>
-                    <option value="Bendahara" <?php if ($row['level'] == 'Bendahara')
-                    echo 'selected' ?>>Bendahara</option>
 
-                </select>
-            </div>
-        </div>
         <button type="submit" class="btn btn-primary mt-3">SImpan</button>
-    </form>
-    <script>
-        $("#form-edit").submit(function (e) {
-            e.preventDefault();
-            var formData = new FormData(this);
-            $.ajax({
-                type: 'POST',
-                url: 'proses.php?aksi=edit-pengguna',
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    if (data == "ok") {
-                        loadTable();
-                        $('.modal').modal('hide');
-                        alertify.success('Edit Berhasil');
+</form>
+<script>
+    $("#form-edit").submit(function (e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+            type: 'POST',
+            url: 'proses.php?aksi=edit-pengguna',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (data == "ok") {
+                    loadTable();
+                    $('.modal').modal('hide');
+                    alertify.success('Edit Berhasil');
 
-                    } else {
-                        alertify.error('Edit Gagal');
+                } else {
+                    alertify.error('Edit Gagal');
 
-                    }
-                },
-                error: function (data) {
-                    alertify.error(data);
                 }
-            });
+            },
+            error: function (data) {
+                alertify.error(data);
+            }
         });
-    </script>
+    });
+</script>

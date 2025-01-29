@@ -52,7 +52,9 @@ switch ($_GET['aksi'] ?? '') {
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $nama = $_POST['nama'];
         $level = $_POST['level'];
-        $sql = "INSERT INTO pengguna (username, password, level, nama) VALUES ('$username', '$password', '$level', '$nama')";
+        // generate kode Pengguna
+        $kode_pengguna = 'P' . str_pad(rand(1, 999), 3, '0', STR_PAD_LEFT);
+        $sql = "INSERT INTO pengguna (kode_pengguna, username, password, level, nama) VALUES ('$kode_pengguna', '$username', '$password', '$level', '$nama')";
         $result = $conn->query($sql);
         if ($result) {
             echo 'ok';
@@ -158,9 +160,10 @@ switch ($_GET['aksi'] ?? '') {
         $id_akun_kredit = $_POST['id_akun_kredit'];
         $kode_pemasukan = $_POST['kode_pemasukan'];
         $id_pengguna = $_POST['id_pengguna'];
+        $kode_pengguna = $_POST['kode_pengguna'];
 
-        $sql = "INSERT INTO pemasukan (total, keterangan, tanggal_transaksi, id_akun, kode_pemasukan, id_pengguna) 
-            VALUES ('$total', '$keterangan', '$tanggal_transaksi', '$id_akun_debit', '$kode_pemasukan', '$id_pengguna')";
+        $sql = "INSERT INTO pemasukan (total, keterangan, tanggal_transaksi, id_akun, kode_pemasukan, id_pengguna, kode_pengguna) 
+            VALUES ('$total', '$keterangan', '$tanggal_transaksi', '$id_akun_debit', '$kode_pemasukan', '$id_pengguna', '$kode_pengguna')";
         $result = $conn->query($sql);
         if ($result) {
             echo 'ok';
@@ -218,9 +221,15 @@ switch ($_GET['aksi'] ?? '') {
         $id_akun_kredit = $_POST['id_akun_kredit'];
         $kode_pengeluaran = $_POST['kode_pengeluaran'];
         $id_pengguna = $_POST['id_pengguna'];
+        $kode_pengguna = $_POST['kode_pengguna'];
+        $nota = $_FILES['nota']['name'];
+        $target_dir = "pages/pengeluaran/upload/";
+        $target_file = $target_dir . basename($_FILES["nota"]["name"]);
+        move_uploaded_file($_FILES["nota"]["tmp_name"], $target_file);
+        $guru_penerima = $_POST['guru_penerima'];
 
-        $sql = "INSERT INTO pengeluaran (total, keterangan, tanggal_transaksi, id_akun, kode_pengeluaran, id_pengguna) 
-            VALUES ('$total', '$keterangan', '$tanggal_transaksi', '$id_akun_kredit', '$kode_pengeluaran', '$id_pengguna')";
+        $sql = "INSERT INTO pengeluaran (total, keterangan, tanggal_transaksi, id_akun, kode_pengeluaran, id_pengguna, kode_pengguna, nota, guru_penerima) 
+            VALUES ('$total', '$keterangan', '$tanggal_transaksi', '$id_akun_kredit', '$kode_pengeluaran', '$id_pengguna', '$kode_pengguna', '$nota', '$guru_penerima')";
         $result = $conn->query($sql);
         if ($result) {
             echo 'ok';
@@ -257,8 +266,9 @@ switch ($_GET['aksi'] ?? '') {
         $id_akun_kredit = $_POST['id_akun_kredit'];
         $kode_pengeluaran = $_POST['kode_pengeluaran'];
         $id_pengguna = $_POST['id_pengguna'];
+        $guru_penerima = $_POST['guru_penerima'];
 
-        $sql = "UPDATE pengeluaran SET total = '$total', keterangan = '$keterangan', tanggal_transaksi = '$tanggal_transaksi', id_akun = '$id_akun_kredit', kode_pengeluaran = '$kode_pengeluaran', id_pengguna = '$id_pengguna' WHERE id_pengeluaran = '$id'";
+        $sql = "UPDATE pengeluaran SET total = '$total', keterangan = '$keterangan', tanggal_transaksi = '$tanggal_transaksi', id_akun = '$id_akun_kredit', kode_pengeluaran = '$kode_pengeluaran', id_pengguna = '$id_pengguna', guru_penerima = '$guru_penerima' WHERE id_pengeluaran = '$id'";
         $result = $conn->query($sql);
         if ($result) {
             echo 'ok';
@@ -269,6 +279,50 @@ switch ($_GET['aksi'] ?? '') {
             http_response_code(400);
         }
         editTransaksi($conn, $id_akun_debit, $id_akun_kredit, $total, $keterangan, $kode_pengeluaran, $tanggal_transaksi);
+        break;
+    case 'tambah-guru':
+        $nama = $_POST['nama_guru'];
+        $no_telp = $_POST['no_telp'];
+        $alamat = $_POST['alamat'];
+        $sql = "INSERT INTO guru (nama_guru, no_telp, alamat) VALUES ('$nama', '$no_telp', '$alamat')";
+        $result = $conn->query($sql);
+        if ($result) {
+            echo 'ok';
+            http_response_code(200);
+        } else {
+            echo 'error';
+            echo $conn->error;
+            http_response_code(400);
+        }
+        break;
+    case 'edit-guru':
+        $id = $_POST['id'];
+        $nama = $_POST['nama_guru'];
+        $no_telp = $_POST['no_telp'];
+        $alamat = $_POST['alamat'];
+        $sql = "UPDATE guru SET nama_guru = '$nama', no_telp = '$no_telp', alamat = '$alamat' WHERE id_guru = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            echo 'ok';
+            http_response_code(200);
+        } else {
+            echo 'error';
+            echo $conn->error;
+            http_response_code(400);
+        }
+        break;
+    case 'hapus-guru':
+        $id = $_POST['id'];
+        $sql = "DELETE FROM guru WHERE id_guru = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            echo 'ok';
+            http_response_code(200);
+        } else {
+            echo 'error';
+            echo $conn->error;
+            http_response_code(400);
+        }
         break;
     default:
         break;

@@ -5,6 +5,7 @@
             <th>Kode</th>
             <th>Keterangan</th>
             <th>Tanggal</th>
+            <th>Penerima</th>
             <th>Total</th>
             <th>Aksi</th>
         </tr>
@@ -22,12 +23,15 @@
                 <td><?= $row['kode_pengeluaran'] ?></td>
                 <td><?= $row['keterangan'] ?></td>
                 <td><?= $row['tanggal_transaksi'] ?></td>
+                <td><?= $row['guru_penerima'] ?></td>
                 <td><?= "Rp. " . number_format($row['total'], 0, ',', '.') ?></td>
                 <td>
                     <button id="edit" data-nama="<?= $row['kode_pengeluaran'] ?>" data-id="<?= $row['id_pengeluaran'] ?>"
                         class="btn btn-primary btn-sm">Edit</button>
                     <button id="delete" data-nama="<?= $row['kode_pengeluaran'] ?>" data-id="<?= $row['id_pengeluaran'] ?>"
                         class="btn btn-danger btn-sm">Hapus</button>
+                    <a target="_blank" href="pages/pengeluaran/upload/<?= $row['nota'] ?>"
+                        data-id="<?= $row['id_pengeluaran'] ?>" class="btn btn-success btn-sm">Download Nota</a>
 
                 </td>
             </tr>

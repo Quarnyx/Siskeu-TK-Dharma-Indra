@@ -70,6 +70,26 @@ if ($resulttransaksi->num_rows > 0) {
             </div>
 
         </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="guru_penerima" class="form-label">Guru Penerima</label>
+                <select name="guru_penerima" class="form-select">
+                    <option value="-">Pilih Guru</option>
+                    <?php
+                    require_once '../../config.php';
+                    $sql = "SELECT * FROM guru";
+                    $result = $conn->query($sql);
+                    while ($rowa = $result->fetch_assoc()) {
+                        ?>
+                        <option value="<?= $rowa['nama_guru'] ?>" <?php if ($row['guru_penerima'] == $rowa['nama_guru'])
+                              echo 'selected' ?>><?= $rowa['nama_guru'] ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+            </div>
+
+        </div>
 
         <div class="row">
             <div class="col-md-12">

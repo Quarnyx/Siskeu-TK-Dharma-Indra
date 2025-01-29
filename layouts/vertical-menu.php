@@ -92,11 +92,11 @@
                     </a>
                 </li>
                 <?php
-                if ($_SESSION['level'] == "Admin" || $_SESSION['level'] == "Bendahara" || $_SESSION['level'] == "Kepala Sekolah") {
+                if ($_SESSION['level'] == "Kepala Sekolah" || $_SESSION['level'] == "Bendahara" || $_SESSION['level'] == "Kepala Sekolah") {
 
                     ?>
                     <?php
-                    if ($_SESSION['level'] == "Admin" || $_SESSION['level'] == "Bendahara") {
+                    if ($_SESSION['level'] == "Kepala Sekolah" || $_SESSION['level'] == "Bendahara") {
 
                         ?>
                         <li>
@@ -110,17 +110,20 @@
                                         <span data-key="t-calendar">Akun Keuangan</span>
                                     </a>
                                 </li>
-                                <?php if ($_SESSION['level'] == "Admin") { ?>
+                                <?php if ($_SESSION['level'] == "Kepala Sekolah") { ?>
                                     <li>
                                         <a href="?page=pengguna">
                                             <span data-key="t-chat">Pengguna</span>
+                                        </a>
+                                        <a href="?page=guru">
+                                            <span data-key="t-profile">Guru</span>
                                         </a>
                                     </li>
                                 <?php } ?>
                             </ul>
                         </li>
                     <?php }
-                    if ($_SESSION['level'] == "Kepala Sekolah" || $_SESSION['level'] == "Bendahara" || $_SESSION['level'] == "Admin") { ?>
+                    if ($_SESSION['level'] == "Kepala Sekolah" || $_SESSION['level'] == "Bendahara" || $_SESSION['level'] == "Kepala Sekolah") { ?>
                         <li>
                             <a href="javascript: void(0);" class="has-arrow">
                                 <i data-feather="file-text"></i>
@@ -133,7 +136,7 @@
                             </ul>
                         </li>
                     <?php }
-                    if ($_SESSION['level'] == "Bendahara" || $_SESSION['level'] == "Admin") {
+                    if ($_SESSION['level'] == "Bendahara" || $_SESSION['level'] == "Kepala Sekolah") {
                         ?>
                         <li class="menu-title mt-2" data-key="t-components">Transaksi</li>
 

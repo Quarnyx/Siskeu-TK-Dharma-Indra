@@ -82,8 +82,7 @@ switch ($_GET['aksi'] ?? '') {
         $id = $_POST['id'];
         $nama = $_POST['nama'];
         $username = $_POST['username'];
-        $level = $_POST['level'];
-        $sql = "UPDATE pengguna SET username = '$username', level = '$level', nama = '$nama' WHERE id_pengguna = '$id'";
+        $sql = "UPDATE pengguna SET username = '$username', nama = '$nama' WHERE id_pengguna = '$id'";
         $result = $conn->query($sql);
         if ($result) {
             echo 'ok';

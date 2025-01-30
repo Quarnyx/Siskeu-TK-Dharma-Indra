@@ -11,7 +11,7 @@
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 30/01/2025 08:54:39
+ Date: 30/01/2025 19:49:10
 */
 
 SET NAMES utf8mb4;
@@ -67,12 +67,12 @@ INSERT INTO `guru` VALUES (3, 'Julia', 'sdasdasdasdasdsa', '018313');
 DROP TABLE IF EXISTS `pemasukan`;
 CREATE TABLE `pemasukan`  (
   `id_pemasukan` int NOT NULL AUTO_INCREMENT,
-  `kode_pemasukan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `kode_pemasukan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `total` decimal(10, 2) NULL DEFAULT NULL,
   `tanggal_transaksi` date NULL DEFAULT NULL,
   `id_pengguna` int NULL DEFAULT NULL,
   `id_akun` int NULL DEFAULT NULL,
-  `keterangan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `keterangan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `kode_pengguna` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_pemasukan`) USING BTREE,
   INDEX `id_akun`(`id_akun` ASC) USING BTREE,
@@ -112,12 +112,12 @@ CREATE TABLE `pembayaran`  (
 DROP TABLE IF EXISTS `pengeluaran`;
 CREATE TABLE `pengeluaran`  (
   `id_pengeluaran` int NOT NULL AUTO_INCREMENT,
-  `kode_pengeluaran` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `kode_pengeluaran` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `total` decimal(10, 2) NULL DEFAULT NULL,
   `tanggal_transaksi` date NULL DEFAULT NULL,
   `id_pengguna` int NULL DEFAULT NULL,
   `id_akun` int NULL DEFAULT NULL,
-  `keterangan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `keterangan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `kode_pengguna` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `nota` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `guru_penerima` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -147,16 +147,14 @@ CREATE TABLE `pengguna`  (
   `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `kode_pengguna` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_pengguna`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pengguna
 -- ----------------------------
 INSERT INTO `pengguna` VALUES (5, 'masruroh', '$2y$10$qE1j888lNYL2JIJcq7GEEe32k98H8EoDkk..U1Ci/8M2FciifAqIO', 'Kepala Sekolah', 'Masruroh, S.Pd.', 'P616');
 INSERT INTO `pengguna` VALUES (7, 'catur', '$2y$10$2.WfztxzIErQJIN6F9eoI.yCSI528KbvP9eJLM3woz5voem3cSsa6', 'Bendahara', 'Catur Tri Wahyu, S.Pd.', NULL);
-INSERT INTO `pengguna` VALUES (9, 'nama', '$2y$10$02pMhoHIua6Z.m6RzOgju.4XdT5Kg0x2MvPXILTS2BHp2tr4L10dy', 'Bendahara', 'Nama ', 'P474');
-INSERT INTO `pengguna` VALUES (10, '', '$2y$10$LX0Q0xUN3jFfDqJgB33qXeDY2hbia0GyQkbR9otM5JJ.840CKWmdu', '', '', 'P635');
-INSERT INTO `pengguna` VALUES (11, '', '$2y$10$WzA5feyQNRjyPxVwN13CJ.qOgTE/7yBaysUKMXiYpEa3ZFmZzzQP2', '', '', 'P254');
+INSERT INTO `pengguna` VALUES (12, 'admin', '$2y$10$Iwngqg7raFo8wRZPycghVeUM4UdILshPBa9aYWLQKuE1ssxYO6bNK', 'Admin', 'Admin', 'P117');
 
 -- ----------------------------
 -- Table structure for siswa

@@ -18,6 +18,7 @@
             <div class="col-md-6">
                 <label for="level" class="form-label">Level</label>
                 <select class="form-select" name="level" id="level">
+                    <option value="Admin">Admin Sekretaris</option>
                     <option value="Kepala Sekolah">Kepala Sekolah</option>
                     <option value="Bendahara">Bendahara</option>
 

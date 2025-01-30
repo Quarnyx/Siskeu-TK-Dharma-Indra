@@ -92,7 +92,7 @@
                     </a>
                 </li>
                 <?php
-                if ($_SESSION['level'] == "Kepala Sekolah" || $_SESSION['level'] == "Bendahara" || $_SESSION['level'] == "Kepala Sekolah") {
+                if ($_SESSION['level'] == "Kepala Sekolah" || $_SESSION['level'] == "Bendahara" || $_SESSION['level'] == "Admin") {
 
                     ?>
                     <?php
@@ -126,7 +126,7 @@
                             </ul>
                         </li>
                     <?php }
-                    if ($_SESSION['level'] == "Kepala Sekolah" || $_SESSION['level'] == "Bendahara" || $_SESSION['level'] == "Kepala Sekolah") { ?>
+                    if ($_SESSION['level'] == "Kepala Sekolah" || $_SESSION['level'] == "Bendahara" || $_SESSION['level'] == "Admin") { ?>
                         <li>
                             <a href="javascript: void(0);" class="has-arrow">
                                 <i data-feather="file-text"></i>

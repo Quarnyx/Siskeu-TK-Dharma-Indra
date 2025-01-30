@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : local
+ Source Server         : localost
  Source Server Type    : MySQL
  Source Server Version : 80030 (8.0.30)
- Source Host           : 127.0.0.1:3306
+ Source Host           : localhost:3306
  Source Schema         : lisa
 
  Target Server Type    : MySQL
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 24/09/2024 00:35:49
+ Date: 30/01/2025 08:54:39
 */
 
 SET NAMES utf8mb4;
@@ -28,7 +28,7 @@ CREATE TABLE `akun`  (
   `wajib` tinyint(1) NULL DEFAULT NULL,
   `kode_akun` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_akun`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of akun
@@ -41,6 +41,25 @@ INSERT INTO `akun` VALUES (9, 'Modal', 'Modal', NULL, '900001');
 INSERT INTO `akun` VALUES (10, 'Bangunan', 'Aktiva Tetap', NULL, '200002');
 INSERT INTO `akun` VALUES (11, 'Gaji ', 'Beban', NULL, '1212121');
 INSERT INTO `akun` VALUES (12, 'Peralatan Kebersihan', 'Aktiva Tetap', NULL, '800001');
+INSERT INTO `akun` VALUES (13, 'Transportasi', 'Pengeluaran', NULL, '90000');
+
+-- ----------------------------
+-- Table structure for guru
+-- ----------------------------
+DROP TABLE IF EXISTS `guru`;
+CREATE TABLE `guru`  (
+  `id_guru` int NOT NULL AUTO_INCREMENT,
+  `nama_guru` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `alamat` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  `no_telp` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id_guru`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of guru
+-- ----------------------------
+INSERT INTO `guru` VALUES (2, 'Sobirina', 'a', '092312312422');
+INSERT INTO `guru` VALUES (3, 'Julia', 'sdasdasdasdasdsa', '018313');
 
 -- ----------------------------
 -- Table structure for pemasukan
@@ -54,23 +73,38 @@ CREATE TABLE `pemasukan`  (
   `id_pengguna` int NULL DEFAULT NULL,
   `id_akun` int NULL DEFAULT NULL,
   `keterangan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `kode_pengguna` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_pemasukan`) USING BTREE,
   INDEX `id_akun`(`id_akun` ASC) USING BTREE,
   INDEX `id_pengguna`(`id_pengguna` ASC) USING BTREE,
   CONSTRAINT `pemasukan_ibfk_2` FOREIGN KEY (`id_akun`) REFERENCES `akun` (`id_akun`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `pemasukan_ibfk_3` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pemasukan
 -- ----------------------------
-INSERT INTO `pemasukan` VALUES (7, 'PM-001', 10000000.00, '2024-08-01', 1, 5, 'Setoran Modal');
-INSERT INTO `pemasukan` VALUES (8, 'PM-002', 5000000.00, '2024-08-31', 1, 5, 'SPP');
-INSERT INTO `pemasukan` VALUES (9, 'PM-003', 5000000.00, '2024-09-01', 1, 5, 'Donatur');
-INSERT INTO `pemasukan` VALUES (10, 'PM-004', 10000000.00, '2024-09-20', 1, 5, 'spp');
-INSERT INTO `pemasukan` VALUES (11, 'PM-005', 20000000.00, '2024-09-01', 1, 6, 'modal');
-INSERT INTO `pemasukan` VALUES (13, 'PJ-006', 100000.00, '2024-09-05', 1, 5, 'ljjllj');
-INSERT INTO `pemasukan` VALUES (14, 'PJ-006', 2560000.00, '2024-09-07', 1, 5, 'asdada');
+INSERT INTO `pemasukan` VALUES (17, 'PJ-001', 100000.00, '2025-01-29', 5, 5, 'adsdada', 'P616');
+INSERT INTO `pemasukan` VALUES (18, 'PJ-002', 200000.00, '2025-01-30', 5, 5, 'Pembayaran asdad', 'P616');
+
+-- ----------------------------
+-- Table structure for pembayaran
+-- ----------------------------
+DROP TABLE IF EXISTS `pembayaran`;
+CREATE TABLE `pembayaran`  (
+  `id_pembayaran` int NOT NULL AUTO_INCREMENT,
+  `id_siswa` int NULL DEFAULT NULL,
+  `jenis_pembayaran` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `bulan_tagihan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `tanggal_pembayaran` date NULL DEFAULT NULL,
+  `kode_pemasukan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `jumlah` decimal(10, 2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_pembayaran`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of pembayaran
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for pengeluaran
@@ -84,20 +118,22 @@ CREATE TABLE `pengeluaran`  (
   `id_pengguna` int NULL DEFAULT NULL,
   `id_akun` int NULL DEFAULT NULL,
   `keterangan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `kode_pengguna` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `nota` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `guru_penerima` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_pengeluaran`) USING BTREE,
   INDEX `id_akun`(`id_akun` ASC) USING BTREE,
   INDEX `id_pengguna`(`id_pengguna` ASC) USING BTREE,
   CONSTRAINT `pengeluaran_ibfk_2` FOREIGN KEY (`id_akun`) REFERENCES `akun` (`id_akun`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `pengeluaran_ibfk_3` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pengeluaran
 -- ----------------------------
-INSERT INTO `pengeluaran` VALUES (6, 'PG-001', 1000000.00, '2024-08-14', 1, 5, 'Peralatan Kantor');
-INSERT INTO `pengeluaran` VALUES (7, 'PG-002', 5000000.00, '2024-09-03', 1, 5, 'Beli Printer');
-INSERT INTO `pengeluaran` VALUES (8, 'PG-003', 2000000.00, '2024-09-06', 1, 5, 'Bangku');
-INSERT INTO `pengeluaran` VALUES (9, 'PG-004', 2000000.00, '2024-09-20', 1, 5, 'gaji');
+INSERT INTO `pengeluaran` VALUES (12, 'PG-001', 15000.00, '2025-01-29', 5, 5, 'asdsada', 'P616', NULL, NULL);
+INSERT INTO `pengeluaran` VALUES (14, 'PG-002', 11000.00, '2025-01-29', 5, 5, 'asdaasdada', 'P616', 'catatan validasi sistem.txt', NULL);
+INSERT INTO `pengeluaran` VALUES (15, 'PG-003', 26800.00, '2025-01-29', 5, 5, 'adsada', 'P616', 'catatan validasi sistem.txt', 'Julia');
 
 -- ----------------------------
 -- Table structure for pengguna
@@ -109,15 +145,41 @@ CREATE TABLE `pengguna`  (
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `level` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `kode_pengguna` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_pengguna`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pengguna
 -- ----------------------------
-INSERT INTO `pengguna` VALUES (1, 'admin', '$2y$10$IFurjz8bw3a2t0HlX2rV4.iEsMpop3E0HXz/HIoLUW/LPFI8IlC6.', 'Admin', 'Tono');
-INSERT INTO `pengguna` VALUES (5, 'masruroh', '$2y$10$XzmvjxHsuf.WrC6OCbdxZePka7U0OdQN2ygLFFObD0eY4SULn93W.', 'Kepala Sekolah', 'Masruroh, S.Pd.');
-INSERT INTO `pengguna` VALUES (7, 'catur', '$2y$10$xVCRHx99PZW/q2J5dgGXyuqOXoV4i0qUqoglvERWV7H9ng5zSe67i', 'Bendahara', 'Catur Tri Wahyu, S.Pd.');
+INSERT INTO `pengguna` VALUES (5, 'masruroh', '$2y$10$qE1j888lNYL2JIJcq7GEEe32k98H8EoDkk..U1Ci/8M2FciifAqIO', 'Kepala Sekolah', 'Masruroh, S.Pd.', 'P616');
+INSERT INTO `pengguna` VALUES (7, 'catur', '$2y$10$2.WfztxzIErQJIN6F9eoI.yCSI528KbvP9eJLM3woz5voem3cSsa6', 'Bendahara', 'Catur Tri Wahyu, S.Pd.', NULL);
+INSERT INTO `pengguna` VALUES (9, 'nama', '$2y$10$02pMhoHIua6Z.m6RzOgju.4XdT5Kg0x2MvPXILTS2BHp2tr4L10dy', 'Bendahara', 'Nama ', 'P474');
+INSERT INTO `pengguna` VALUES (10, '', '$2y$10$LX0Q0xUN3jFfDqJgB33qXeDY2hbia0GyQkbR9otM5JJ.840CKWmdu', '', '', 'P635');
+INSERT INTO `pengguna` VALUES (11, '', '$2y$10$WzA5feyQNRjyPxVwN13CJ.qOgTE/7yBaysUKMXiYpEa3ZFmZzzQP2', '', '', 'P254');
+
+-- ----------------------------
+-- Table structure for siswa
+-- ----------------------------
+DROP TABLE IF EXISTS `siswa`;
+CREATE TABLE `siswa`  (
+  `id_siswa` int NOT NULL AUTO_INCREMENT,
+  `nama_siswa` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `alamat` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tahun_masuk` int NOT NULL,
+  `nama_ayah` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nama_ibu` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `no_telp` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `kelas` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nisn` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id_siswa`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of siswa
+-- ----------------------------
+INSERT INTO `siswa` VALUES (1, 'Jono', 'Kendal', 2022, 'Tono', 'Sutini', '010391313', '2A', '99029');
+INSERT INTO `siswa` VALUES (3, 'Laplus D', 'Kendal A', 2022, 'AaV', 'Ba', '087662848242', '2B', '21331');
 
 -- ----------------------------
 -- Table structure for transaksi
@@ -136,22 +198,19 @@ CREATE TABLE `transaksi`  (
   INDEX `id_akun_kredit`(`id_akun_kredit` ASC) USING BTREE,
   CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_akun_debit`) REFERENCES `akun` (`id_akun`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_akun_kredit`) REFERENCES `akun` (`id_akun`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of transaksi
 -- ----------------------------
-INSERT INTO `transaksi` VALUES (10, 'Setoran Modal', 'PM-001', 10000000.00, 5, 9, '2024-08-01');
-INSERT INTO `transaksi` VALUES (11, 'SPP', 'PM-002', 5000000.00, 5, 7, '2024-08-31');
-INSERT INTO `transaksi` VALUES (12, 'Peralatan Kantor', 'PG-001', 1000000.00, 8, 5, '2024-08-14');
-INSERT INTO `transaksi` VALUES (13, 'Beli Printer', 'PG-002', 5000000.00, 8, 5, '2024-09-03');
-INSERT INTO `transaksi` VALUES (14, 'Donatur', 'PM-003', 5000000.00, 5, 9, '2024-09-01');
-INSERT INTO `transaksi` VALUES (15, 'spp', 'PM-004', 10000000.00, 5, 7, '2024-09-20');
-INSERT INTO `transaksi` VALUES (16, 'modal', 'PM-005', 20000000.00, 6, 9, '2024-09-01');
-INSERT INTO `transaksi` VALUES (17, 'Bangku', 'PG-003', 2000000.00, 10, 5, '2024-09-06');
-INSERT INTO `transaksi` VALUES (18, 'gaji', 'PG-004', 2000000.00, 11, 5, '2024-09-20');
-INSERT INTO `transaksi` VALUES (20, 'asdada', 'PJ-006', 2560000.00, 5, 7, '2024-09-07');
-INSERT INTO `transaksi` VALUES (21, 'asdada', 'PJ-006', 2560000.00, 5, 7, '2024-09-07');
+INSERT INTO `transaksi` VALUES (23, 'adada', 'PJ-001', 75000.00, 5, 9, '2024-10-28');
+INSERT INTO `transaksi` VALUES (24, 'adada', 'PG-001', 15000.00, 8, 5, '2024-10-28');
+INSERT INTO `transaksi` VALUES (25, 'adadada', 'PJ-002', 15000.00, 5, 9, '2024-10-29');
+INSERT INTO `transaksi` VALUES (26, 'adsdada', 'PJ-001', 100000.00, 5, 7, '2025-01-29');
+INSERT INTO `transaksi` VALUES (27, 'asdsada', 'PG-001', 15000.00, 8, 5, '2025-01-29');
+INSERT INTO `transaksi` VALUES (29, 'asdaasdada', 'PG-002', 11000.00, 10, 5, '2025-01-29');
+INSERT INTO `transaksi` VALUES (30, 'adsada', 'PG-003', 26800.00, 13, 5, '2025-01-29');
+INSERT INTO `transaksi` VALUES (31, 'Pembayaran asdad', 'PJ-002', 200000.00, 5, 7, '2025-01-30');
 
 -- ----------------------------
 -- View structure for jurnal

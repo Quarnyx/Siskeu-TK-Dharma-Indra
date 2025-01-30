@@ -324,6 +324,110 @@ switch ($_GET['aksi'] ?? '') {
             http_response_code(400);
         }
         break;
+    case 'tambah-siswa':
+        $nisn = $_POST['nisn'];
+        $nama_siswa = $_POST['nama_siswa'];
+        $kelas = $_POST['kelas'];
+        $tahun_masuk = $_POST['tahun_masuk'];
+        $nama_ibu = $_POST['nama_ibu'];
+        $nama_ayah = $_POST['nama_ayah'];
+        $no_telp = $_POST['no_telp'];
+        $alamat = $_POST['alamat'];
+        $sql = "INSERT INTO siswa (nisn, nama_siswa, kelas, tahun_masuk, nama_ibu, nama_ayah, no_telp, alamat) VALUES ('$nisn', '$nama_siswa', '$kelas', '$tahun_masuk', '$nama_ibu', '$nama_ayah', '$no_telp', '$alamat')";
+        $result = $conn->query($sql);
+        if ($result) {
+            echo 'ok';
+            http_response_code(200);
+        } else {
+            echo 'error';
+            echo $conn->error;
+            http_response_code(400);
+        }
+        break;
+    case 'edit-siswa':
+        $id = $_POST['id'];
+        $nisn = $_POST['nisn'];
+        $nama_siswa = $_POST['nama_siswa'];
+        $kelas = $_POST['kelas'];
+        $tahun_masuk = $_POST['tahun_masuk'];
+        $nama_ibu = $_POST['nama_ibu'];
+        $nama_ayah = $_POST['nama_ayah'];
+        $no_telp = $_POST['no_telp'];
+        $alamat = $_POST['alamat'];
+        $sql = "UPDATE siswa SET nisn='$nisn', nama_siswa='$nama_siswa', kelas='$kelas', tahun_masuk='$tahun_masuk', nama_ibu='$nama_ibu', nama_ayah='$nama_ayah', no_telp='$no_telp', alamat='$alamat' WHERE id_siswa = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            echo 'ok';
+            http_response_code(200);
+        } else {
+            echo 'error';
+            echo $conn->error;
+            http_response_code(400);
+        }
+        break;
+    case 'hapus-siswa':
+        $id = $_POST['id'];
+        $sql = "DELETE FROM siswa WHERE id_siswa = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            echo 'ok';
+            http_response_code(200);
+        } else {
+            echo 'error';
+            echo $conn->error;
+            http_response_code(400);
+        }
+        break;
+    case 'tambah-pembayaran':
+        $total = $_POST['total'];
+        $keterangan = $_POST['keterangan'];
+        $tanggal_transaksi = $_POST['tanggal_transaksi'];
+        $id_akun_debit = $_POST['id_akun_debit'];
+        $id_akun_kredit = $_POST['id_akun_kredit'];
+        $kode_pemasukan = $_POST['kode_pemasukan'];
+        $id_pengguna = $_POST['id_pengguna'];
+        $kode_pengguna = $_POST['kode_pengguna'];
+        $id_siswa = $_POST['id_siswa'];
+        $jenis_pembayaran = $_POST['jenis_pembayaran'];
+        $bulan_tagihan = $_POST['bulan_tagihan'];
+
+
+        $sql = "INSERT INTO pemasukan (total, keterangan, tanggal_transaksi, id_akun, kode_pemasukan, id_pengguna, kode_pengguna) 
+            VALUES ('$total', '$keterangan', '$tanggal_transaksi', '$id_akun_debit', '$kode_pemasukan', '$id_pengguna', '$kode_pengguna')";
+        $result = $conn->query($sql);
+        if ($result) {
+            echo 'ok';
+            http_response_code(200);
+        } else {
+            echo 'error';
+            echo $conn->error;
+            http_response_code(400);
+        }
+        tambahTransaksi($id_akun_debit, $id_akun_kredit, $total, $keterangan, $tanggal_transaksi, $kode_pemasukan, $conn);
+
+        $sqlpembayaran = "INSERT INTO pembayaran (id_siswa, kode_pemasukan, jumlah, tanggal_pembayaran, jenis_pembayaran, bulan_tagihan) 
+            VALUES ('$id_siswa', '$kode_pemasukan', '$total', '$tanggal_transaksi', '$jenis_pembayaran', '$bulan_tagihan')";
+        $result = $conn->query($sqlpembayaran);
+
+        break;
+    case 'hapus-pembayaran':
+        $id = $_POST['id'];
+        $kode = $_POST['kode'];
+        $sql = "DELETE FROM pembayaran WHERE id_pembayaran = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            echo 'ok';
+            http_response_code(200);
+        } else {
+            echo 'error';
+            echo $conn->error;
+            http_response_code(400);
+        }
+        // hapus pemasukan
+        $sql = "DELETE FROM pemasukan WHERE kode_pemasukan = '$kode'";
+        $result = $conn->query($sql);
+        hapusTransaksi($kode, $conn);
+        break;
     default:
         break;
 }

@@ -118,6 +118,9 @@
                                         <a href="?page=guru">
                                             <span data-key="t-profile">Guru</span>
                                         </a>
+                                        <a href="?page=siswa">
+                                            <span data-key="t-profile">Siswa</span>
+                                        </a>
                                     </li>
                                 <?php } ?>
                             </ul>
@@ -144,6 +147,12 @@
                             <a href="?page=pemasukan">
                                 <i data-feather="layout"></i>
                                 <span data-key="t-horizontal">Transaksi Pemasukan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="?page=pembayaran">
+                                <i data-feather="layout"></i>
+                                <span data-key="t-horizontal">Transaksi Pembayaran</span>
                             </a>
                         </li>
                         <li>

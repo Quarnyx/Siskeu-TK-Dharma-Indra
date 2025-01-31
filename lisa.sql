@@ -11,7 +11,7 @@
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 30/01/2025 19:49:10
+ Date: 31/01/2025 14:04:55
 */
 
 SET NAMES utf8mb4;
@@ -28,7 +28,7 @@ CREATE TABLE `akun`  (
   `wajib` tinyint(1) NULL DEFAULT NULL,
   `kode_akun` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_akun`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of akun
@@ -79,13 +79,20 @@ CREATE TABLE `pemasukan`  (
   INDEX `id_pengguna`(`id_pengguna` ASC) USING BTREE,
   CONSTRAINT `pemasukan_ibfk_2` FOREIGN KEY (`id_akun`) REFERENCES `akun` (`id_akun`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `pemasukan_ibfk_3` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pemasukan
 -- ----------------------------
 INSERT INTO `pemasukan` VALUES (17, 'PJ-001', 100000.00, '2025-01-29', 5, 5, 'adsdada', 'P616');
 INSERT INTO `pemasukan` VALUES (18, 'PJ-002', 200000.00, '2025-01-30', 5, 5, 'Pembayaran asdad', 'P616');
+INSERT INTO `pemasukan` VALUES (21, 'PJ-003', 120000.00, '2025-01-31', 5, 5, 'Pembayaran', 'TK-001');
+INSERT INTO `pemasukan` VALUES (22, 'PJ-004', 120000.00, '2025-01-30', 5, 5, 'Pembayaran', 'TK-001');
+INSERT INTO `pemasukan` VALUES (23, 'PJ-005', 120000.00, '2025-01-31', 5, 5, 'Pembayaran', 'TK-001');
+INSERT INTO `pemasukan` VALUES (24, 'PJ-006', 2560000.00, '2025-01-02', 5, 5, 'Pembayaran', 'TK-001');
+INSERT INTO `pemasukan` VALUES (25, 'PJ-007', 15000.00, '2025-01-15', 5, 5, 'Pembayaran adada', 'TK-001');
+INSERT INTO `pemasukan` VALUES (26, 'PJ-008', 120000.00, '2025-01-31', 5, 5, 'Pembayaran', 'TK-001');
+INSERT INTO `pemasukan` VALUES (27, 'PJ-009', 120000.00, '2025-01-31', 5, 5, 'Pembayaran', 'TK-001');
 
 -- ----------------------------
 -- Table structure for pembayaran
@@ -99,12 +106,20 @@ CREATE TABLE `pembayaran`  (
   `tanggal_pembayaran` date NULL DEFAULT NULL,
   `kode_pemasukan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `jumlah` decimal(10, 2) NULL DEFAULT NULL,
+  `tahun_tagihan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_pembayaran`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pembayaran
 -- ----------------------------
+INSERT INTO `pembayaran` VALUES (3, 1, 'SPP', 'January', '2025-01-31', 'PJ-003', 120000.00, '2025');
+INSERT INTO `pembayaran` VALUES (4, 3, 'SPP', 'January', '2025-01-30', 'PJ-004', 120000.00, '2025');
+INSERT INTO `pembayaran` VALUES (5, 3, 'SPP', 'February', '2025-01-31', 'PJ-005', 120000.00, '2025');
+INSERT INTO `pembayaran` VALUES (6, 3, 'Pembangunan', 'Januari', '2025-01-02', 'PJ-006', 2560000.00, '2025');
+INSERT INTO `pembayaran` VALUES (7, 1, 'Pembayaran Lainnya', 'Maret', '2025-01-15', 'PJ-007', 15000.00, '2024');
+INSERT INTO `pembayaran` VALUES (8, 1, 'Seragam', 'Februari', '2025-01-31', 'PJ-008', 120000.00, '2025');
+INSERT INTO `pembayaran` VALUES (9, 3, 'Porseni', 'Februari', '2025-01-31', 'PJ-009', 120000.00, '2025');
 
 -- ----------------------------
 -- Table structure for pengeluaran
@@ -147,14 +162,14 @@ CREATE TABLE `pengguna`  (
   `nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `kode_pengguna` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_pengguna`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pengguna
 -- ----------------------------
-INSERT INTO `pengguna` VALUES (5, 'masruroh', '$2y$10$qE1j888lNYL2JIJcq7GEEe32k98H8EoDkk..U1Ci/8M2FciifAqIO', 'Kepala Sekolah', 'Masruroh, S.Pd.', 'P616');
-INSERT INTO `pengguna` VALUES (7, 'catur', '$2y$10$2.WfztxzIErQJIN6F9eoI.yCSI528KbvP9eJLM3woz5voem3cSsa6', 'Bendahara', 'Catur Tri Wahyu, S.Pd.', NULL);
-INSERT INTO `pengguna` VALUES (12, 'admin', '$2y$10$Iwngqg7raFo8wRZPycghVeUM4UdILshPBa9aYWLQKuE1ssxYO6bNK', 'Admin', 'Admin', 'P117');
+INSERT INTO `pengguna` VALUES (5, 'masruroh', '$2y$10$qE1j888lNYL2JIJcq7GEEe32k98H8EoDkk..U1Ci/8M2FciifAqIO', 'Kepala Sekolah', 'Masruroh, S.Pd.', 'TK-001');
+INSERT INTO `pengguna` VALUES (7, 'catur', '$2y$10$2.WfztxzIErQJIN6F9eoI.yCSI528KbvP9eJLM3woz5voem3cSsa6', 'Bendahara', 'Catur Tri Wahyu, S.Pd.', 'TK-003');
+INSERT INTO `pengguna` VALUES (12, 'sekretaris', '$2y$10$Iwngqg7raFo8wRZPycghVeUM4UdILshPBa9aYWLQKuE1ssxYO6bNK', 'Sekretaris', 'Sekretaris', 'TK-002');
 
 -- ----------------------------
 -- Table structure for siswa
@@ -196,7 +211,7 @@ CREATE TABLE `transaksi`  (
   INDEX `id_akun_kredit`(`id_akun_kredit` ASC) USING BTREE,
   CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_akun_debit`) REFERENCES `akun` (`id_akun`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_akun_kredit`) REFERENCES `akun` (`id_akun`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 41 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of transaksi
@@ -209,6 +224,13 @@ INSERT INTO `transaksi` VALUES (27, 'asdsada', 'PG-001', 15000.00, 8, 5, '2025-0
 INSERT INTO `transaksi` VALUES (29, 'asdaasdada', 'PG-002', 11000.00, 10, 5, '2025-01-29');
 INSERT INTO `transaksi` VALUES (30, 'adsada', 'PG-003', 26800.00, 13, 5, '2025-01-29');
 INSERT INTO `transaksi` VALUES (31, 'Pembayaran asdad', 'PJ-002', 200000.00, 5, 7, '2025-01-30');
+INSERT INTO `transaksi` VALUES (34, 'Pembayaran', 'PJ-003', 120000.00, 5, 7, '2025-01-31');
+INSERT INTO `transaksi` VALUES (35, 'Pembayaran', 'PJ-004', 120000.00, 5, 7, '2025-01-30');
+INSERT INTO `transaksi` VALUES (36, 'Pembayaran', 'PJ-005', 120000.00, 5, 7, '2025-01-31');
+INSERT INTO `transaksi` VALUES (37, 'Pembayaran', 'PJ-006', 2560000.00, 5, 7, '2025-01-02');
+INSERT INTO `transaksi` VALUES (38, 'Pembayaran adada', 'PJ-007', 15000.00, 5, 7, '2025-01-15');
+INSERT INTO `transaksi` VALUES (39, 'Pembayaran', 'PJ-008', 120000.00, 5, 7, '2025-01-31');
+INSERT INTO `transaksi` VALUES (40, 'Pembayaran', 'PJ-009', 120000.00, 5, 7, '2025-01-31');
 
 -- ----------------------------
 -- View structure for jurnal

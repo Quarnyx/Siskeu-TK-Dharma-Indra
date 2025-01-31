@@ -33,7 +33,7 @@ FROM
                 <td><?= $row['nama_siswa'] . " - " . $row['kelas'] ?></td>
                 <td><?= "Rp. " . number_format($row['jumlah'], 0, ',', '.') ?></td>
                 <td><?= $row['tanggal_pembayaran'] ?></td>
-                <td><?= $row['bulan_tagihan'] ?></td>
+                <td><?= $row['bulan_tagihan'] ?> - <?= $row['tahun_tagihan'] ?></td>
                 <td>
                     <button id="delete" data-nama="<?= $row['kode_pemasukan'] ?>" data-id="<?= $row['id_pembayaran'] ?>"
                         class="btn btn-danger btn-sm">Hapus</button>

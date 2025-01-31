@@ -35,6 +35,9 @@ switch ($_GET['page'] ?? '') {
     case 'pembayaran':
         include 'pages/pembayaran/index.php';
         break;
+    case 'laporan-pembayaran':
+        include 'pages/laporan-pembayaran/index.php';
+        break;
     default:
         include 'pages-404.php';
         break;

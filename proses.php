@@ -52,8 +52,7 @@ switch ($_GET['aksi'] ?? '') {
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $nama = $_POST['nama'];
         $level = $_POST['level'];
-        // generate kode Pengguna
-        $kode_pengguna = 'P' . str_pad(rand(1, 999), 3, '0', STR_PAD_LEFT);
+        $kode_pengguna = $_POST['kode_pengguna'];
         $sql = "INSERT INTO pengguna (kode_pengguna, username, password, level, nama) VALUES ('$kode_pengguna', '$username', '$password', '$level', '$nama')";
         $result = $conn->query($sql);
         if ($result) {
@@ -111,7 +110,8 @@ switch ($_GET['aksi'] ?? '') {
         $nama_akun = $_POST['nama_akun'];
         $jenis_akun = $_POST['jenis_akun'];
         $kode_akun = $_POST['kode_akun'];
-        $sql = "INSERT INTO akun (nama_akun, jenis_akun,kode_akun) VALUES ('$nama_akun', '$jenis_akun', '$kode_akun')";
+        $wajib = $_POST['wajib'];
+        $sql = "INSERT INTO akun (nama_akun, jenis_akun,kode_akun, wajib) VALUES ('$nama_akun', '$jenis_akun', '$kode_akun', '$wajib')";
         $result = $conn->query($sql);
         if ($result) {
             echo 'ok';
@@ -389,6 +389,7 @@ switch ($_GET['aksi'] ?? '') {
         $id_siswa = $_POST['id_siswa'];
         $jenis_pembayaran = $_POST['jenis_pembayaran'];
         $bulan_tagihan = $_POST['bulan_tagihan'];
+        $tahun_tagihan = $_POST['tahun_tagihan'];
 
 
         $sql = "INSERT INTO pemasukan (total, keterangan, tanggal_transaksi, id_akun, kode_pemasukan, id_pengguna, kode_pengguna) 
@@ -404,8 +405,8 @@ switch ($_GET['aksi'] ?? '') {
         }
         tambahTransaksi($id_akun_debit, $id_akun_kredit, $total, $keterangan, $tanggal_transaksi, $kode_pemasukan, $conn);
 
-        $sqlpembayaran = "INSERT INTO pembayaran (id_siswa, kode_pemasukan, jumlah, tanggal_pembayaran, jenis_pembayaran, bulan_tagihan) 
-            VALUES ('$id_siswa', '$kode_pemasukan', '$total', '$tanggal_transaksi', '$jenis_pembayaran', '$bulan_tagihan')";
+        $sqlpembayaran = "INSERT INTO pembayaran (id_siswa, kode_pemasukan, jumlah, tanggal_pembayaran, jenis_pembayaran, bulan_tagihan, tahun_tagihan) 
+            VALUES ('$id_siswa', '$kode_pemasukan', '$total', '$tanggal_transaksi', '$jenis_pembayaran', '$bulan_tagihan', '$tahun_tagihan')";
         $result = $conn->query($sqlpembayaran);
 
         break;

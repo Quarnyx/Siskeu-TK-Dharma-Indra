@@ -2,6 +2,23 @@
     <div class="d-grid gap-3">
         <div class="row">
             <div class="col-md-6">
+                <?php
+
+                require_once '../../config.php';
+                $query = mysqli_query($conn, "SELECT MAX(kode_pengguna) AS kode_pengguna FROM pengguna");
+                $data = mysqli_fetch_array($query);
+                $max = $data['kode_pengguna'] ? substr($data['kode_pengguna'], 3, 3) : "000";
+                $no = $max + 1;
+                $char = "TK-";
+                $kode = $char . sprintf("%03s", $no);
+                ?>
+                <label for="kode_pengguna" class="form-label">Kode Pengguna</label>
+                <input type="text" class="form-control" name="kode_pengguna" id="kode_pengguna"
+                    placeholder="Kode Pengguna" value="<?= $kode ?>">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
                 <label for="nama" class="form-label">Nama</label>
                 <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama">
             </div>

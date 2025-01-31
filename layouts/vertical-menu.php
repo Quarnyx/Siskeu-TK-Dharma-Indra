@@ -136,6 +136,8 @@
                                 <li><a href="?page=laporan-pendapatan" data-key="t-starter-page">Laporan Pendapatan</a></li>
                                 <li><a href="?page=laporan-pengeluaran" data-key="t-maintenance">Laporan Pengeluaran</a></li>
                                 <li><a href="?page=arus-kas" data-key="t-coming-soon">Arus Kas</a></li>
+                                <li><a href="?page=laporan-pembayaran" data-key="t-coming-soon">Laporan Pembayaran</a></li>
+
                             </ul>
                         </li>
                     <?php }

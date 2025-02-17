@@ -410,6 +410,51 @@ switch ($_GET['aksi'] ?? '') {
         $result = $conn->query($sqlpembayaran);
 
         break;
+    case 'edit-pembayaran':
+        $id = $_POST['id'];
+        $total = $_POST['total'];
+        $keterangan = $_POST['keterangan'];
+        $tanggal_transaksi = $_POST['tanggal_transaksi'];
+        $kode_pengguna = $_POST['kode_pengguna'];
+        $id_siswa = $_POST['id_siswa'];
+        $jenis_pembayaran = $_POST['jenis_pembayaran'];
+        $bulan_tagihan = $_POST['bulan_tagihan'];
+        $tahun_tagihan = $_POST['tahun_tagihan'];
+
+        $sql = "UPDATE pembayaran SET jumlah = '$total', tanggal_pembayaran = '$tanggal_transaksi', id_siswa = '$id_siswa', jenis_pembayaran = '$jenis_pembayaran', bulan_tagihan = '$bulan_tagihan', tahun_tagihan = '$tahun_tagihan' WHERE kode_pemasukan = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            echo 'error';
+            echo $conn->error;
+            http_response_code(400);
+        }
+
+        // update pemasukan
+        $sql = "UPDATE pemasukan SET total = '$total', keterangan = '$keterangan', tanggal_transaksi = '$tanggal_transaksi', kode_pengguna = '$kode_pengguna' WHERE kode_pemasukan = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            echo 'error';
+            echo $conn->error;
+            http_response_code(400);
+        }
+
+        // update transaksi
+        $sql = "UPDATE transaksi SET total = '$total', deskripsi = '$keterangan', tanggal_transaksi = '$tanggal_transaksi' WHERE kode_transaksi = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            echo 'ok';
+            http_response_code(200);
+        } else {
+            echo 'error';
+            echo $conn->error;
+            http_response_code(400);
+        }
+        break;
+
     case 'hapus-pembayaran':
         $id = $_POST['id'];
         $kode = $_POST['kode'];

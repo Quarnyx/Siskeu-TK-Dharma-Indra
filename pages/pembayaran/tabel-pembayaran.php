@@ -35,6 +35,8 @@ FROM
                 <td><?= $row['tanggal_pembayaran'] ?></td>
                 <td><?= $row['bulan_tagihan'] ?> - <?= $row['tahun_tagihan'] ?></td>
                 <td>
+                    <button id="edit" data-nama="<?= $row['kode_pemasukan'] ?>" data-id="<?= $row['kode_pemasukan'] ?>"
+                        class="btn btn-primary btn-sm">Edit</button>
                     <button id="delete" data-nama="<?= $row['kode_pemasukan'] ?>" data-id="<?= $row['id_pembayaran'] ?>"
                         class="btn btn-danger btn-sm">Hapus</button>
 

@@ -123,6 +123,16 @@
                                         </a>
                                     </li>
                                 <?php } ?>
+                                <?php if ($_SESSION['level'] == "Bendahara") { ?>
+                                    <li>
+                                        <a href="?page=guru">
+                                            <span data-key="t-profile">Guru</span>
+                                        </a>
+                                        <a href="?page=siswa">
+                                            <span data-key="t-profile">Siswa</span>
+                                        </a>
+                                    </li>
+                                <?php } ?>
                             </ul>
                         </li>
                     <?php }

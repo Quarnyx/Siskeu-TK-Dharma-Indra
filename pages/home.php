@@ -33,7 +33,7 @@
                             <h4 class="mb-3 text-success">
                                 <?php
                                 require_once 'config.php';
-                                $sql = "SELECT SUM(debit - kredit) AS total_kas FROM jurnal WHERE jenis_akun = 'Aktiva Lancar' AND MONTH(tanggal_transaksi) = MONTH(CURDATE())";
+                                $sql = "SELECT SUM(debit - kredit) AS total_kas FROM jurnal WHERE jenis_akun = 'Aktiva Lancar'";
                                 $result = $conn->query($sql);
                                 $row = $result->fetch_assoc();
                                 $total_kas = $row['total_kas'];

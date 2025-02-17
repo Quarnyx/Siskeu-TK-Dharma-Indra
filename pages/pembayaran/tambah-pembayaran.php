@@ -66,18 +66,18 @@
                 <label class="form-label">Bulan Tagihan</label>
                 <select name="bulan_tagihan" class="form-select">
                     <option value="-">Pilih Bulan Tagihan</option>
-                    <option value="Januari">Januari</option>
-                    <option value="Februari">Februari</option>
-                    <option value="Maret">Maret</option>
+                    <option value="January">Januari</option>
+                    <option value="February">Februari</option>
+                    <option value="March">Maret</option>
                     <option value="April">April</option>
-                    <option value="Mei">Mei</option>
-                    <option value="Juni">Juni</option>
-                    <option value="Juli">Juli</option>
-                    <option value="Agustus">Agustus</option>
+                    <option value="May">Mei</option>
+                    <option value="June">Juni</option>
+                    <option value="July">Juli</option>
+                    <option value="August">Agustus</option>
                     <option value="September">September</option>
-                    <option value="Oktober">Oktober</option>
+                    <option value="October">Oktober</option>
                     <option value="November">November</option>
-                    <option value="Desember">Desember</option>
+                    <option value="December">Desember</option>
                 </select>
             </div>
             <div class="col-md-3">

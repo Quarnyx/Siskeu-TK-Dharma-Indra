@@ -98,10 +98,18 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <label for="keterangan" class="form-label">Keterangan</label>
                 <textarea class="form-control" name="keterangan" id="keterangan"
                     placeholder="Keterangan">Pembayaran</textarea>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="nota" class="form-label">Bukti Pembayaran</label>
+                <div class="form-group mb-0">
+                    <p>*Format file yang di izinkan hanya PDF dan JPG/JPEG</p>
+                    <input type="file" class="form-control" name="bukti_pembayaran">
+                </div>
+
             </div>
         </div>
 
@@ -123,12 +131,15 @@
                 if (data == "ok") {
                     loadTable();
                     $('.modal').modal('hide');
-                    alertify.success('Pengguna Berhasil Ditambah');
-
-                } else {
-                    alertify.error('Pengguna Gagal Ditambah');
+                    alertify.success('Pembayaran Berhasil Ditambah');
 
                 }
+                if (data == "error") {
+                    alertify.error('Pembayaran Gagal Ditambah');
+                }
+            },
+            error: function () {
+                alertify.error('Pembayaran Gagal Ditambah Atau Sudah Ada');
             }
         });
     });

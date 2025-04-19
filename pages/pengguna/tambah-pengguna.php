@@ -16,6 +16,10 @@
                 <input type="text" class="form-control" name="kode_pengguna" id="kode_pengguna"
                     placeholder="Kode Pengguna" value="<?= $kode ?>">
             </div>
+            <div class="col-md-6">
+                <label for="foto" class="form-label">Foto Pengguna</label>
+                <input type="file" class="form-control" id="foto" name="foto">
+            </div>
         </div>
         <div class="row">
             <div class="col-md-6">
@@ -44,7 +48,7 @@
         </div>
 
     </div>
-    <button type="submit" class="btn btn-primary mt-3">SImpan</button>
+    <button type="submit" class="btn btn-primary mt-3">Simpan</button>
 </form>
 <script>
     $("#tambah-pengguna").submit(function (e) {

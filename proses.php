@@ -53,7 +53,14 @@ switch ($_GET['aksi'] ?? '') {
         $nama = $_POST['nama'];
         $level = $_POST['level'];
         $kode_pengguna = $_POST['kode_pengguna'];
-        $sql = "INSERT INTO pengguna (kode_pengguna, username, password, level, nama) VALUES ('$kode_pengguna', '$username', '$password', '$level', '$nama')";
+        $foto = $_FILES['foto']['name'];
+        $x = explode('.', $foto);
+        $ekstensi = strtolower(end($x));
+        $file_tmp = $_FILES['foto']['tmp_name'];
+        // rename file foto ke kode pengguna
+        $foto = $kode_pengguna . '.' . $ekstensi;
+        move_uploaded_file($file_tmp, 'pages/pengguna/foto-pengguna/' . $foto);
+        $sql = "INSERT INTO pengguna (kode_pengguna, username, password, level, nama, foto_pengguna) VALUES ('$kode_pengguna', '$username', '$password', '$level', '$nama', '$foto')";
         $result = $conn->query($sql);
         if ($result) {
             echo 'ok';
@@ -81,7 +88,20 @@ switch ($_GET['aksi'] ?? '') {
         $id = $_POST['id'];
         $nama = $_POST['nama'];
         $username = $_POST['username'];
-        $sql = "UPDATE pengguna SET username = '$username', nama = '$nama' WHERE id_pengguna = '$id'";
+        $kode_pengguna = $_POST['kode_pengguna'];
+        $foto = $_FILES['foto']['name'];
+        if ($foto != '') {
+            $x = explode('.', $foto);
+            $ekstensi = strtolower(end($x));
+            $file_tmp = $_FILES['foto']['tmp_name'];
+            // rename file foto ke kode pengguna
+            $foto = $kode_pengguna . '.' . $ekstensi;
+            move_uploaded_file($file_tmp, 'pages/pengguna/foto-pengguna/' . $foto);
+            $sql = "UPDATE pengguna SET username = '$username', nama = '$nama', foto_pengguna = '$foto' WHERE id_pengguna = '$id'";
+            $result = $conn->query($sql);
+        } else {
+            $sql = "UPDATE pengguna SET username = '$username', nama = '$nama' WHERE id_pengguna = '$id'";
+        }
         $result = $conn->query($sql);
         if ($result) {
             echo 'ok';
@@ -332,7 +352,16 @@ switch ($_GET['aksi'] ?? '') {
         $nama_ayah = $_POST['nama_ayah'];
         $no_telp = $_POST['no_telp'];
         $alamat = $_POST['alamat'];
-        $sql = "INSERT INTO siswa (nisn, nama_siswa, kelas, tahun_masuk, nama_ibu, nama_ayah, no_telp, alamat) VALUES ('$nisn', '$nama_siswa', '$kelas', '$tahun_masuk', '$nama_ibu', '$nama_ayah', '$no_telp', '$alamat')";
+        $jenis_kelamin = $_POST['jenis_kelamin'];
+        $agama = $_POST['agama'];
+        $foto = $_FILES['foto_siswa']['name'];
+        $x = explode('.', $foto);
+        $ekstensi = strtolower(end($x));
+        $file_tmp = $_FILES['foto_siswa']['tmp_name'];
+        // rename file foto ke nisn
+        $foto = $nisn . '.' . $ekstensi;
+        move_uploaded_file($file_tmp, 'pages/siswa/foto-siswa/' . $foto);
+        $sql = "INSERT INTO siswa (nisn, nama_siswa, kelas, tahun_masuk, nama_ibu, nama_ayah, no_telp, alamat, foto_siswa, jenis_kelamin, agama) VALUES ('$nisn', '$nama_siswa', '$kelas', '$tahun_masuk', '$nama_ibu', '$nama_ayah', '$no_telp', '$alamat', '$foto', '$jenis_kelamin', '$agama')";
         $result = $conn->query($sql);
         if ($result) {
             echo 'ok';
@@ -353,7 +382,21 @@ switch ($_GET['aksi'] ?? '') {
         $nama_ayah = $_POST['nama_ayah'];
         $no_telp = $_POST['no_telp'];
         $alamat = $_POST['alamat'];
-        $sql = "UPDATE siswa SET nisn='$nisn', nama_siswa='$nama_siswa', kelas='$kelas', tahun_masuk='$tahun_masuk', nama_ibu='$nama_ibu', nama_ayah='$nama_ayah', no_telp='$no_telp', alamat='$alamat' WHERE id_siswa = '$id'";
+        $agama = $_POST['agama'];
+        $jenis_kelamin = $_POST['jenis_kelamin'];
+        $foto = $_FILES['foto_siswa']['name'];
+        if ($foto != '') {
+            $x = explode('.', $foto);
+            $ekstensi = strtolower(end($x));
+            $file_tmp = $_FILES['foto_siswa']['tmp_name'];
+            // rename file foto ke nisn
+            $foto = $nisn . '.' . $ekstensi;
+            move_uploaded_file($file_tmp, 'pages/siswa/foto-siswa/' . $foto);
+            $sql = "UPDATE siswa SET nisn='$nisn', nama_siswa='$nama_siswa', kelas='$kelas', tahun_masuk='$tahun_masuk', nama_ibu='$nama_ibu', nama_ayah='$nama_ayah', no_telp='$no_telp', alamat='$alamat', foto_siswa='$foto', jenis_kelamin='$jenis_kelamin', agama='$agama' WHERE id_siswa = '$id'";
+        } else {
+            $sql = "UPDATE siswa SET nisn='$nisn', nama_siswa='$nama_siswa', kelas='$kelas', tahun_masuk='$tahun_masuk', nama_ibu='$nama_ibu', nama_ayah='$nama_ayah', no_telp='$no_telp', alamat='$alamat', jenis_kelamin='$jenis_kelamin', agama='$agama' WHERE id_siswa = '$id'";
+        }
+
         $result = $conn->query($sql);
         if ($result) {
             echo 'ok';
@@ -390,24 +433,38 @@ switch ($_GET['aksi'] ?? '') {
         $jenis_pembayaran = $_POST['jenis_pembayaran'];
         $bulan_tagihan = $_POST['bulan_tagihan'];
         $tahun_tagihan = $_POST['tahun_tagihan'];
-
-
-        $sql = "INSERT INTO pemasukan (total, keterangan, tanggal_transaksi, id_akun, kode_pemasukan, id_pengguna, kode_pengguna) 
-            VALUES ('$total', '$keterangan', '$tanggal_transaksi', '$id_akun_debit', '$kode_pemasukan', '$id_pengguna', '$kode_pengguna')";
+        $bukti_pembayaran = $_FILES['bukti_pembayaran']['name'];
+        $x = explode('.', $bukti_pembayaran);
+        $ekstensi = strtolower(end($x));
+        $file_tmp = $_FILES['bukti_pembayaran']['tmp_name'];
+        $bukti_pembayaran = $kode_pemasukan . '.' . $ekstensi;
+        move_uploaded_file($file_tmp, 'pages/pembayaran/bukti-pembayaran/' . $bukti_pembayaran);
+        // cek apakah id_siswa, jenis_pembayaran, bulan_tagihan, tahun_tagihan sudah ada
+        $sql = "SELECT * FROM pembayaran WHERE id_siswa = '$id_siswa' AND jenis_pembayaran = '$jenis_pembayaran' AND bulan_tagihan = '$bulan_tagihan' AND tahun_tagihan = '$tahun_tagihan'";
         $result = $conn->query($sql);
-        if ($result) {
-            echo 'ok';
-            http_response_code(200);
-        } else {
+        if ($result->num_rows > 0) {
             echo 'error';
-            echo $conn->error;
             http_response_code(400);
-        }
-        tambahTransaksi($id_akun_debit, $id_akun_kredit, $total, $keterangan, $tanggal_transaksi, $kode_pemasukan, $conn);
+        } else {
+            $sql = "INSERT INTO pemasukan (total, keterangan, tanggal_transaksi, id_akun, kode_pemasukan, id_pengguna, kode_pengguna) 
+            VALUES ('$total', '$keterangan', '$tanggal_transaksi', '$id_akun_debit', '$kode_pemasukan', '$id_pengguna', '$kode_pengguna')";
+            $result = $conn->query($sql);
+            if ($result) {
+                echo 'ok';
+                http_response_code(200);
+            } else {
+                echo 'error';
+                echo $conn->error;
+                http_response_code(400);
+            }
+            tambahTransaksi($id_akun_debit, $id_akun_kredit, $total, $keterangan, $tanggal_transaksi, $kode_pemasukan, $conn);
 
-        $sqlpembayaran = "INSERT INTO pembayaran (id_siswa, kode_pemasukan, jumlah, tanggal_pembayaran, jenis_pembayaran, bulan_tagihan, tahun_tagihan) 
-            VALUES ('$id_siswa', '$kode_pemasukan', '$total', '$tanggal_transaksi', '$jenis_pembayaran', '$bulan_tagihan', '$tahun_tagihan')";
-        $result = $conn->query($sqlpembayaran);
+            $sqlpembayaran = "INSERT INTO pembayaran (id_siswa, kode_pemasukan, jumlah, tanggal_pembayaran, jenis_pembayaran, bulan_tagihan, tahun_tagihan, bukti_pembayaran) 
+            VALUES ('$id_siswa', '$kode_pemasukan', '$total', '$tanggal_transaksi', '$jenis_pembayaran', '$bulan_tagihan', '$tahun_tagihan', '$bukti_pembayaran')";
+            $result = $conn->query($sqlpembayaran);
+        }
+
+
 
         break;
     case 'edit-pembayaran':

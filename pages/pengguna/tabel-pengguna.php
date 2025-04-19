@@ -20,7 +20,9 @@
             <tr>
                 <td><?= $no++ ?></td>
                 <td><?= $row['kode_pengguna'] ?></td>
-                <td><?= $row['nama'] ?></td>
+                <td><img src="pages/pengguna/foto-pengguna/<?= $row['foto_pengguna'] ?>" width="50px" height="50px"
+                        class="img-thumbnail"> <?= $row['nama'] ?>
+                </td>
                 <td><?= $row['username'] ?></td>
                 <td><?= $row['level'] ?></td>
                 <td>

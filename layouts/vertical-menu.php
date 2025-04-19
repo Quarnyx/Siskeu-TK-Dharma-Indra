@@ -52,16 +52,13 @@
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item bg-light-subtle border-start border-end"
                     id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg"
+                    <img class="rounded-circle header-profile-user"
+                        src="pages/pengguna/foto-pengguna/<?php echo $_SESSION['foto_pengguna']; ?>"
                         alt="Header Avatar">
                     <span class="d-none d-xl-inline-block ms-1 fw-medium"><?php echo $_SESSION['nama']; ?>.</span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <!-- item-->
-                    <!-- <a class="dropdown-item" href="apps-contacts-profile.php"><i
-                            class="mdi mdi mdi-key font-size-16 align-middle me-1"></i>
-                        Ganti Password</a> -->
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="logout.php"><i
                             class="mdi mdi-logout font-size-16 align-middle me-1"></i>
@@ -106,52 +103,28 @@
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
                                 <li>
-                                    <a href="?page=akun">
-                                        <span data-key="t-calendar">Akun Keuangan</span>
-                                    </a>
-                                </li>
-                                <?php if ($_SESSION['level'] == "Kepala Sekolah") { ?>
-                                    <li>
+                                    <?php if ($_SESSION['level'] == "Kepala Sekolah") { ?>
                                         <a href="?page=pengguna">
                                             <span data-key="t-chat">Pengguna</span>
                                         </a>
+                                    <?php } ?>
+                                    <?php if ($_SESSION['level'] == "Bendahara") { ?>
+                                        <a href="?page=akun">
+                                            <span data-key="t-calendar">Akun Keuangan</span>
+                                        </a>
                                         <a href="?page=guru">
                                             <span data-key="t-profile">Guru</span>
                                         </a>
                                         <a href="?page=siswa">
                                             <span data-key="t-profile">Siswa</span>
                                         </a>
-                                    </li>
-                                <?php } ?>
-                                <?php if ($_SESSION['level'] == "Bendahara") { ?>
-                                    <li>
-                                        <a href="?page=guru">
-                                            <span data-key="t-profile">Guru</span>
-                                        </a>
-                                        <a href="?page=siswa">
-                                            <span data-key="t-profile">Siswa</span>
-                                        </a>
-                                    </li>
-                                <?php } ?>
-                            </ul>
-                        </li>
-                    <?php }
-                    if ($_SESSION['level'] == "Kepala Sekolah" || $_SESSION['level'] == "Bendahara" || $_SESSION['level'] == "Sekretaris") { ?>
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow">
-                                <i data-feather="file-text"></i>
-                                <span data-key="t-pages">Laporan</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="?page=laporan-pendapatan" data-key="t-starter-page">Laporan Pendapatan</a></li>
-                                <li><a href="?page=laporan-pengeluaran" data-key="t-maintenance">Laporan Pengeluaran</a></li>
-                                <li><a href="?page=arus-kas" data-key="t-coming-soon">Arus Kas</a></li>
-                                <li><a href="?page=laporan-pembayaran" data-key="t-coming-soon">Laporan Pembayaran</a></li>
+                                    <?php } ?>
+                                </li>
 
                             </ul>
                         </li>
                     <?php }
-                    if ($_SESSION['level'] == "Bendahara" || $_SESSION['level'] == "Kepala Sekolah") {
+                    if ($_SESSION['level'] == "Bendahara") {
                         ?>
                         <li class="menu-title mt-2" data-key="t-components">Transaksi</li>
 
@@ -176,6 +149,21 @@
 
                         <?php
                     }
+                    if ($_SESSION['level'] == "Kepala Sekolah" || $_SESSION['level'] == "Bendahara" || $_SESSION['level'] == "Sekretaris") { ?>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="file-text"></i>
+                                <span data-key="t-pages">Laporan</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="?page=laporan-pendapatan" data-key="t-starter-page">Laporan Pendapatan</a></li>
+                                <li><a href="?page=laporan-pengeluaran" data-key="t-maintenance">Laporan Pengeluaran</a></li>
+                                <li><a href="?page=arus-kas" data-key="t-coming-soon">Arus Kas</a></li>
+                                <li><a href="?page=laporan-pembayaran" data-key="t-coming-soon">Laporan Pembayaran</a></li>
+
+                            </ul>
+                        </li>
+                    <?php }
                 }
                 ?>
 

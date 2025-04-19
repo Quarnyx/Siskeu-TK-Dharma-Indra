@@ -19,3 +19,10 @@
 <script src="assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
 <script src="assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
 <script src="assets/libs/alertifyjs/build/alertify.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(window).on('load', function () {
+            document.body.setAttribute('data-sidebar-size', 'lg');
+        });
+    }); 
+</script>

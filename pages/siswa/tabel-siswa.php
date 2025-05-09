@@ -1,9 +1,10 @@
 <table id="table-data" class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>#</th>
-            <th>NISN</th>
+            <th>No</th>
+            <th>NIPD</th>
             <th>Nama</th>
+            <th>Jenis Kelamin</th>
             <th>Kelas</th>
             <th>Tahun Masuk</th>
             <th>Aksi</th>
@@ -19,8 +20,9 @@
             ?>
             <tr>
                 <td><?= $no++ ?></td>
-                <td><?= $row['nisn'] ?></td>
+                <td><?= $row['nipd'] ?></td>
                 <td><?= $row['nama_siswa'] ?></td>
+                <td><?= $row['jenis_kelamin'] ?></td>
                 <td><?= $row['kelas'] ?></td>
                 <td><?= $row['tahun_masuk'] ?></td>
                 <td>

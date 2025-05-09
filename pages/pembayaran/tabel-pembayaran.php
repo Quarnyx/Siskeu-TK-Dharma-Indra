@@ -1,7 +1,7 @@
 <table id="table-data" class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>#</th>
+            <th>No</th>
             <th>Jenis Pembayaran</th>
             <th>Siswa</th>
             <th>Jumlah</th>
@@ -15,15 +15,15 @@
         require_once '../../config.php';
         $no = 1;
         $sql = "SELECT
-	pembayaran.*, 
-	siswa.nama_siswa,
-    siswa.kelas
-FROM
-	pembayaran
-	INNER JOIN
-	siswa
-	ON 
-		pembayaran.id_siswa = siswa.id_siswa";
+	               pembayaran.*, 
+                   siswa.nama_siswa,
+                   siswa.kelas
+                FROM
+	               pembayaran
+	               INNER JOIN
+	               siswa
+	               ON 
+		              pembayaran.id_siswa = siswa.id_siswa";
         $result = $conn->query($sql);
         while ($row = $result->fetch_assoc()) {
             ?>
@@ -39,8 +39,9 @@ FROM
                         class="btn btn-primary btn-sm">Edit</button>
                     <button id="delete" data-nama="<?= $row['kode_pemasukan'] ?>" data-id="<?= $row['id_pembayaran'] ?>"
                         class="btn btn-danger btn-sm">Hapus</button>
-                    <a target="_blank" href="pages/pembayaran/bukti-pembayaran/<?= $row['bukti_pembayaran'] ?>"
-                        class="btn btn-success btn-sm">Download Bukti</a>
+                        <a target="_blank" href="pages/pembayaran/bukti-pembayaran/<?= $row['bukti_pembayaran'] ?>"
+                        data-id="<?= $row['id_pembayaran'] ?>" class="btn btn-success btn-sm">Download Bukti</a>
+                    
 
                 </td>
             </tr>

@@ -46,7 +46,7 @@
         loadTable();
         $('#tambah').click(function () {
             $('.modal').modal('show');
-            $('.modal-title').text('Tambah Akun');
+            $('.modal-title').text('Tambah Data Guru');
             $('.modal-body').load('pages/guru/tambah-guru.php');
         });
     });

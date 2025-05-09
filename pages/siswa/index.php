@@ -46,7 +46,7 @@
         loadTable();
         $('#tambah').click(function () {
             $('.modal').modal('show');
-            $('.modal-title').text('Tambah Akun');
+            $('.modal-title').text('Tambah Data Siswa');
             $('.modal-body').load('pages/siswa/tambah-siswa.php');
         });
     });

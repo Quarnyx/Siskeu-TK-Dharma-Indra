@@ -114,9 +114,9 @@
                     <hr class="my-1">
                     <div class="card-body">
 
-                        <div class="row mt-5">
+                        <div class="row mt-1">
                             <div class="col-sm-12">
-                                <p class="mb-3 text-center"><b>Laporan Pembayaran spp</b> <br> Tahun : <?php
+                                <p class="mb-3 text-center"><b>Laporan Pembayaran SISWA</b> <br> Tahun : <?php
                                 if (!empty($_GET["tahun"])) {
                                     echo $_GET['tahun'];
                                 } else {
@@ -138,7 +138,7 @@
                                         <tr>
                                             <th style="vertical-align: middle" rowspan="2">No</th>
                                             <th style="vertical-align: middle" rowspan="2">Nama</th>
-                                            <th style="vertical-align: middle" rowspan="2">NISN</th>
+                                            <th style="vertical-align: middle" rowspan="2">NIPD</th>
                                             <th style="vertical-align: middle" colspan="12">SPP</th>
                                             <th style="vertical-align: middle" rowspan="2">Pembangunan</th>
                                             <th style="vertical-align: middle" rowspan="2">Seragam</th>
@@ -180,7 +180,7 @@
                                             <tr>
                                                 <td class="text-center"><?= $no++ ?></td>
                                                 <td class="text-center"><?= $data['nama_siswa'] ?></td>
-                                                <td class="text-center"><?= $data['nisn'] ?></td>
+                                                <td class="text-center"><?= $data['nipd'] ?></td>
 
                                                 <?php
                                                 for ($month = 1; $month <= 12; $month++) {

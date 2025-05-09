@@ -6,8 +6,8 @@
                 <input type="text" class="form-control" name="nama_siswa" id="nama_siswa" placeholder="Nama Siswa">
             </div>
             <div class="col-md-4">
-                <label for="nisn" class="form-label">NISN</label>
-                <input type="text" class="form-control" name="nisn" id="nisn" placeholder="NISN">
+                <label for="nipd" class="form-label">NIPD</label>
+                <input type="text" class="form-control" name="nipd" id="nipd" placeholder="NIPD">
             </div>
             <div class="col-md-4">
                 <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
@@ -47,6 +47,7 @@
                     <option value="Kristen">Kristen</option>
                     <option value="Hindu">Hindu</option>
                     <option value="Budha">Budha</option>
+                    <option value="Konghucu">Konghucu</option>
                 </select>
             </div>
         </div>
@@ -62,7 +63,7 @@
         </div>
 
     </div>
-    <button type="submit" class="btn btn-primary mt-3">SImpan</button>
+    <button type="submit" class="btn btn-primary mt-3">Simpan</button>
 </form>
 <script>
     $("#tambah-siswa").submit(function (e) {

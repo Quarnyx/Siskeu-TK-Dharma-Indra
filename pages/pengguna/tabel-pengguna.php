@@ -1,7 +1,7 @@
 <table id="table-data" class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>#</th>
+            <th>No</th>
             <th>Kode Pengguna</th>
             <th>Nama</th>
             <th>Username</th>

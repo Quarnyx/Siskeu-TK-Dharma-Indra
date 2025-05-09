@@ -16,9 +16,9 @@ if ($result->num_rows > 0) {
                     value="<?= $row['nama_siswa'] ?>">
             </div>
             <div class="col-md-4">
-                <label for="nisn" class="form-label">NISN</label>
-                <input type="text" class="form-control" name="nisn" id="nisn" placeholder="NISN"
-                    value="<?= $row['nisn'] ?>">
+                <label for="nipd" class="form-label">NIPD</label>
+                <input type="text" class="form-control" name="nipd" id="nipd" placeholder="NIPD"
+                    value="<?= $row['nipd'] ?>">
             </div>
             <div class="col-md-4">
                 <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>

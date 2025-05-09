@@ -130,10 +130,27 @@ if ($result->num_rows > 0) {
         ?>
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <label for="keterangan" class="form-label">Keterangan</label>
                 <textarea class="form-control" name="keterangan" id="keterangan"
                     placeholder="Keterangan"><?= $rowb['keterangan'] ?></textarea>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="pages/pembayaran/bukti-pembayaran/<?= $row['bukti_pembayaran'] ?>" width="100px" height="100px"
+                                    class="img">
+                            </div>
+                            <div class="col-md-8">
+                                <label for="bukti_pembayaran" class="form-label">Ganti Bukti Pembayaran</label>
+                                <input type="file" class="form-control" id="bukti_pembayaran" name="bukti_pembayaran">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

@@ -103,13 +103,9 @@
                 <textarea class="form-control" name="keterangan" id="keterangan"
                     placeholder="Keterangan">Pembayaran</textarea>
             </div>
-            <div class="form-group col-md-6">
-                <label for="nota" class="form-label">Bukti Pembayaran</label>
-                <div class="form-group mb-0">
-                    <p>*Format file yang di izinkan hanya PDF dan JPG/JPEG</p>
-                    <input type="file" class="form-control" name="bukti_pembayaran">
-                </div>
-
+            <div class="col-md-4">
+                <label for="bukti_pembayaran" class="form-label">Bukti Pembayaran</label>
+                <input type="file" class="form-control" id="bukti_pembayaran" name="bukti_pembayaran">
             </div>
         </div>
 

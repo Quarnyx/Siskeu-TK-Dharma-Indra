@@ -1,15 +1,17 @@
 <table id="table-data" class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>#</th>
+            <th>No</th>
             <th>Nama</th>
+            <th>Jenis Kelamin</th>
+            <th>Agama</th>
             <th>Alamat</th>
             <th>No Telepon</th>
             <th>Aksi</th>
         </tr>
     </thead>
     <tbody>
-        <?php
+       <?php
         require_once '../../config.php';
         $no = 1;
         $sql = "SELECT * FROM guru";
@@ -18,15 +20,19 @@
             ?>
             <tr>
                 <td><?= $no++ ?></td>
-                <td><?= $row['nama_guru'] ?></td>
+                <td><img src="pages/guru/foto-guru/<?= $row['foto_guru'] ?>" width="50px" height="50px"
+                        class="img-thumbnail"> <?= $row['nama_guru'] ?>
+                </td>
+                <td><?= $row['jk'] ?></td>
+                <td><?= $row['agama_guru'] ?></td>
                 <td><?= $row['alamat'] ?></td>
                 <td><?= $row['no_telp'] ?></td>
+
                 <td>
                     <button id="edit" data-nama="<?= $row['nama_guru'] ?>" data-id="<?= $row['id_guru'] ?>"
                         class="btn btn-primary btn-sm">Edit</button>
                     <button id="delete" data-nama="<?= $row['nama_guru'] ?>" data-id="<?= $row['id_guru'] ?>"
                         class="btn btn-danger btn-sm">Hapus</button>
-
                 </td>
             </tr>
             <?php

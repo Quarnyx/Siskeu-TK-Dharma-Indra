@@ -1,7 +1,7 @@
 <table id="table-data" class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>#</th>
+            <th>No</th>
             <th>Kode</th>
             <th>Keterangan</th>
             <th>Tanggal</th>

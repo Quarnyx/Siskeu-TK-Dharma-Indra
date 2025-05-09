@@ -100,7 +100,7 @@
                     <hr class="my-1">
                     <div class="card-body">
 
-                        <div class="row mt-5">
+                        <div class="row mt-1">
                             <div class="col-sm-12">
                                 <p class="mb-3 text-center"><b>Laporan Pengeluaran Kas</b> <br> Tanggal : <?php
                                 if (!empty($_GET["dari_tanggal"]) && !empty($_GET["sampai_tanggal"])) {

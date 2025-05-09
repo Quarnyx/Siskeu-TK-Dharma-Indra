@@ -38,6 +38,10 @@
                         class="btn btn-primary btn-sm">Edit</button>
                     <button id="delete" data-nama="<?= $row['kode_pemasukan'] ?>" data-id="<?= $row['id_pemasukan'] ?>"
                         class="btn btn-danger btn-sm">Hapus</button>
+                    <?php if ($row['bukti_pemasukan'] != null) { ?>
+                        <a target="_blank" href="pages/pemasukan/bukti-pemasukan/<?= $row['bukti_pemasukan'] ?>"
+                            data-id="<?= $row['kode_pemasukan'] ?>" class="btn btn-success btn-sm">Download Bukti</a>
+                    <?php } ?>
 
                 </td>
             </tr>

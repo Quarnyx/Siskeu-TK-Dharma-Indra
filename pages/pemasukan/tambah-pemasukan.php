@@ -63,6 +63,10 @@
                 <label for="" class="form-label">Tanggal Transaksi</label>
                 <input type="date" class="form-control" name="tanggal_transaksi" id="tanggal_transaksi" placeholder="">
             </div>
+            <div class="col-md-6">
+                <label for="bukti_pemasukan" class="form-label">Bukti Pemasukan</label>
+                <input type="file" class="form-control" id="bukti_pemasukan" name="bukti_pemasukan">
+            </div>
 
         </div>
 

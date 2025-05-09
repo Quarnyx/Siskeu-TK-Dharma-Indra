@@ -39,9 +39,13 @@
                         class="btn btn-primary btn-sm">Edit</button>
                     <button id="delete" data-nama="<?= $row['kode_pemasukan'] ?>" data-id="<?= $row['id_pembayaran'] ?>"
                         class="btn btn-danger btn-sm">Hapus</button>
+                    <?php if ($row['bukti_pembayaran'] != null) { ?>
                         <a target="_blank" href="pages/pembayaran/bukti-pembayaran/<?= $row['bukti_pembayaran'] ?>"
-                        data-id="<?= $row['id_pembayaran'] ?>" class="btn btn-success btn-sm">Download Bukti</a>
-                    
+                            data-id="<?= $row['id_pembayaran'] ?>" class="btn btn-success btn-sm">Download Bukti</a>
+                    <?php } ?>
+                    <a target="_blank" href="pages/pembayaran/cetak-bukti-pembayaran.php?id=<?= $row['kode_pemasukan'] ?>"
+                        data-id="<?= $row['id_pembayaran'] ?>" class="btn btn-info btn-sm">Cetak Bukti</a>
+
 
                 </td>
             </tr>

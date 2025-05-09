@@ -68,6 +68,12 @@ if ($resulttransaksi->num_rows > 0) {
                 <input type="date" class="form-control" name="tanggal_transaksi" id="tanggal_transaksi" placeholder=""
                     value="<?= $row['tanggal_transaksi'] ?>">
             </div>
+            <?php if ($row['bukti_pemasukan'] != null) { ?>
+                <div class="col-md-6">
+                    <label for="bukti_pemasukan" class="form-label">Bukti Pemasukan</label>
+                    <input type="file" class="form-control" id="bukti_pemasukan" name="bukti_pemasukan">
+                </div>
+            <?php } ?>
 
         </div>
 

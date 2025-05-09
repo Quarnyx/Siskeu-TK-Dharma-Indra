@@ -52,15 +52,27 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <label class="form-label">Jenis Pembayaran</label>
-                <select name="jenis_pembayaran" class="form-select">
-                    <option value="-">Pilih Jenis Pembayaran</option>
-                    <option value="SPP">SPP</option>
-                    <option value="Pembangunan">Pembangunan</option>
-                    <option value="Seragam">Seragam</option>
-                    <option value="Porseni">Porseni</option>
-                    <option value="Pembayaran Lainnya">Pembayaran Lainnya</option>
-                </select>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="form-label">Jenis Pembayaran</label>
+                        <select name="jenis_pembayaran" class="form-select">
+                            <option value="-">Pilih Jenis Pembayaran</option>
+                            <option value="SPP">SPP</option>
+                            <option value="Pembangunan">Pembangunan</option>
+                            <option value="Seragam">Seragam</option>
+                            <option value="Porseni">Porseni</option>
+                            <option value="Pembayaran Lainnya">Pembayaran Lainnya</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Metode Pembayaran</label>
+                        <select name="metode_pembayaran" class="form-select" id="metode_pembayaran">
+                            <option value="-">Pilih Metode Pembayaran</option>
+                            <option value="Tunai">Tunai</option>
+                            <option value="Transfer">Transfer</option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <div class="col-md-3">
                 <label class="form-label">Bulan Tagihan</label>
@@ -113,8 +125,16 @@
     <button type="submit" class="btn btn-primary mt-3">Simpan</button>
 </form>
 <script>
+    $("#metode_pembayaran").change(function () {
+        if ($(this).val() == "Tunai") {
+            $("#bukti_pembayaran").parent().hide();
+        } else {
+            $("#bukti_pembayaran").parent().show();
+        }
+    })
     $("#tambah-pemasukan").submit(function (e) {
         var formData = new FormData(this);
+        var kode_pemasukan = $("#kode_pemasukan").val();
 
         e.preventDefault();
         $.ajax({
@@ -126,9 +146,14 @@
             success: function (data) {
                 if (data == "ok") {
                     loadTable();
-                    $('.modal').modal('hide');
                     alertify.success('Pembayaran Berhasil Ditambah');
+                    $('.modal').modal('hide');
+                    alertify.confirm('Cetak Bukti', 'Apakah ingin mencetak bukti pembayaran?',
+                        function () {
+                            window.open('pages/pembayaran/cetak-bukti-pembayaran.php?id=' + kode_pemasukan, '_blank');
 
+                        },
+                        function () { alertify.success('Bukti tidak di cetak') });
                 }
                 if (data == "error") {
                     alertify.error('Pembayaran Gagal Ditambah');

@@ -191,7 +191,7 @@
                                         $query = mysqli_query($conn, $sql);
                                         $data = mysqli_fetch_array($query);
                                         ?>
-                                        <p class="font-weight-bold"> <?= $data['nama'] ?></p>
+                                        <p class="font-weight-bold"> <?= $_SESSION['nama']; ?></p>
                                     </div>
                                 </div>
                             </div>

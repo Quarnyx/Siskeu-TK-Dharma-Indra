@@ -250,14 +250,9 @@
                             </div>
                             <div class="col-6">
                                 <div class="mt-3" style="text-align:center;">
-                                    <p class="font-weight-bold">Kedungsuren, <?= tanggal(date('Y-m-d')) ?><br>Bendahara
+                                    <p class="font-weight-bold">Kedungsuren, <?= tanggal(date('Y-m-d')) ?><br><?= $_SESSION['level'] ?>
                                     </p>
                                     <div class="mt-5">
-                                        <?php
-                                        $sql = "SELECT * FROM pengguna WHERE level='Bendahara'";
-                                        $query = mysqli_query($conn, $sql);
-                                        $data = mysqli_fetch_array($query);
-                                        ?>
                                         <p class="font-weight-bold"> <?= $_SESSION['nama']; ?></p>
                                     </div>
                                 </div>
